@@ -11,6 +11,7 @@
         <h1 class="fw-light">MotherCare Doctors</h1>
         <span>Total No. of added doctors: <b><?php echo $data['added-doctors']?> </b> </span> <br>
       <a href="<?php echo URLROOT;?>/admin/add_doctor"><span class="text-white btn btn-sm px-4  mt-2 fs-6" style="background-color:#EE6983;">Add Doctor</span></a>  
+      
       </div>
     </div>
   </section>
@@ -34,7 +35,10 @@
                            
                             <div>
                             <span  class="btn btn-primary btn-sm m-0">
+                            <a href="<?php echo URLROOT;?>/admin/edit_doctor?id=<?php echo $doctors->id ?>" class="text-white text-decoration-none">
                             Edit Profile
+                            </a>
+                         
                             </span>
                             <span  class="btn btn-secondary btn-sm m-0" data-bs-toggle="collapse" href="#a<?php echo $doctors->id ?>" role="button" aria-expanded="false" aria-controls="a<?php echo $doctors->id ?>">
                             View More

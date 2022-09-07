@@ -4,7 +4,7 @@ class Users extends Controller{
       $this->userModel = $this->model('User');
       $this->doctorModel = $this->model('doctor');
 
-       $this->id = $_GET['id'];
+
 
     }
 
@@ -14,10 +14,10 @@ class Users extends Controller{
     }
 
     public function register(){
-      
+   
         // Check for POST
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-   
+          userRoleEqualtoUser('users/register');
           // Process form
           // sanitize post data
           $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -116,32 +116,34 @@ class Users extends Controller{
       
       }
       public function booking(){
-       $doctor_profile = $this->doctorModel->getDoctor($this->id);
-        if(!$doctor_profile){
-          redirect('pages/doctor');
-        }
+       userRoleEqualtoUser('users/login');
+        ID_isNull($_GET['id'], 'index');# check  id
+          $doctor_profile = $this->doctorModel->getDoctor($_GET['id']);
         
-
+            
         // Check for POST
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-           
           // Process form
           // sanitize post data
           $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
           // init data
           
           $data =[
-            'doctor_name'=> $doctor_profile->name,
+            'doctor_id'=> $doctor_profile->id,
+            'doctor_name'=> $doctor_profile->doctor_name,
+            'user_name'=> $_SESSION['user_name'],
+            'user_email'=> $_SESSION['user_email'],
+            'user_id'=>  $_SESSION['user_id'],
+            'contact_number'=> $_SESSION['user_contact_number'],
             'date' => trim($_POST['date']),
             'time' => trim($_POST['time']),
             'note' => trim($_POST['note']),
-            'doctor_id'=> $this->id,
-            'bookind_id'=>  uniqid(),
+            'booking_id'=>  uniqid(),
             'date_err' => '',
             'time_err' => '',
             'note_err' => '',
           ];  
-
+        
           // validate date
           if(empty($data['date'])){
             $data['date_err'] = 'Pleae enter date';
@@ -156,16 +158,14 @@ class Users extends Controller{
           $data['note_err'] = 'Pleae enter note';
         }
 
-
-
         // Make sure errors are empty
-        if(empty($data['name_err'])&& $data['note_err'] &&  $data['time_err']){
+        if(empty($data['name_err']) && empty($data['note_err']) &&  empty($data['time_err'])){
           // Validated
-        
+      
              if($this->userModel->add_booking($data)){
-              // flash('register_success', 'You are registered and can log in');
+         
             
-              redirect('users/login');
+              redirect('pages/myBooking');
             } else {
               die('Something went wrong');
             }
@@ -174,26 +174,27 @@ class Users extends Controller{
           // Load view with errors
            $this->view('users/booking', $data);
         }
-        // $this->view('users/booking', $data);
+    
 
 
         } else {
         
-          // Init data
-          $data =[
-    
 
+         
+          // Init dataf
+          $data =[
+
+            'doctor_id'=> $doctor_profile->id,
             'doctor_name'=> $doctor_profile->doctor_name,
             'date' => '',
             'time' => '',
             'note' => '',
-  
             'date_err' => '',
             'time_err' => '',
             'note_err' => '',
-           
+
           ];
-  
+      
           // Load view
           $this->view('users/booking', $data);
   
@@ -202,8 +203,10 @@ class Users extends Controller{
       
       }
       public function login(){
+      
         // Check for POST
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
+          userRoleEqualtoUser('users/login');
           // user_role('users/login');
 
           // Process form
@@ -301,5 +304,20 @@ class Users extends Controller{
        
        
       }
+      public function myBookings(){
+        userRoleEqualtoUser('users/login'); 
+        $booking =  $this->userModel->getAllBookings_as_user($_SESSION['user_id']);
+       $data =  ['booking'=> $booking,
+           ];   
+      
+       $this->view('users/myBooking', $data);
+      
+      }
+      public function account(){
+
+        $data =  [ ];   
     
+        $this->view('users/account');
+    
+       }
 }

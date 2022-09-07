@@ -22,6 +22,7 @@ require APPROOT . '/views/inc/navbar.php';
   </section>
     </div>
     <?php foreach($data['doctors'] as  $doctors): ?>
+    
             <div class="  align-items-start  ">
               <div class="list-group-item py-3 mt-3 ">
               <div class="d-flex justify-content-start gap-3">

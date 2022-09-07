@@ -6,18 +6,34 @@
 
 <div class="btn-group dropleft">
 <button class="btn btn-sm btn-dark dropdown-toggle btn-sm text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Pages
+    Admin Pages
   </button>
 
 <ul class="dropdown-menu dropdown-menu-dark">
 <a class="nav-link text-white" href="<?php echo URLROOT;?>/admin/index"> Dashboard </a>
 <a class="nav-link text-white" href="<?php echo URLROOT;?>/admin/doctors"> doctors </a>
-<a class="nav-link text-white" href="<?php echo URLROOT;?>/admin/bookings"> Bookings</a>
+<a class="nav-link text-white" href="<?php echo URLROOT;?>/admin/user_bookings"> Bookings</a>
 <a class="nav-link text-white" href="<?php echo URLROOT;?>/admin/contact">Contact</a>
 </ul>
 </div>
 
-<a class="btn btn-sm btn-dark text-white"  href="<?php echo URLROOT;?>/pages/index" role="button">Website</a>
+
+<div class="btn-group dropleft">
+<button class="btn btn-sm btn-dark dropdown-toggle btn-sm text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+Website Pages
+  </button>
+
+<ul class="dropdown-menu dropdown-menu-dark">
+<a class="nav-link text-white"  href="<?php echo URLROOT;?>/pages/index"> Home</a>
+<a class="nav-link text-white"  href="<?php echo URLROOT;?>/pages/doctors"> doctors </a>
+<a class="nav-link text-white" href="<?php echo URLROOT;?>/pages/contact">Contact</a>
+<a class="nav-link text-white" href="<?php echo URLROOT;?>/users/register">Register</a>
+<a class="nav-link text-white" href="<?php echo URLROOT;?>/users/login">Login</a>
+
+
+</ul>
+</div>
+
 
 <a class="btn btn-sm btn-dark text-white float-right" href="<?php echo URLROOT; ?>/users/logout">Logout</a>
 

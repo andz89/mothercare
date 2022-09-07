@@ -9,11 +9,11 @@
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li><a href="<?php echo URLROOT;?>/pages/index" class="nav-link px-2 link-secondary">Home</a></li>
         <li><a href="<?php echo URLROOT;?>/pages/doctors" class="nav-link px-2 link-dark">Doctors</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">Contact</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">About</a></li>
+        <li><a href="<?php echo URLROOT;?>/pages/contact" class="nav-link px-2 link-dark">Contact</a></li>
+        <li><a href="<?php echo URLROOT;?>/pages/about" class="nav-link px-2 link-dark">About</a></li>
         <?php if(isset($_SESSION['user_id'] )&& $_SESSION['user_role'] == 'user') : ?>
-          <li><a  href="<?php echo URLROOT; ?>/users/booking" class="nav-link px-2 link-dark">Booking</a></li>
-        <li><a href="#"href="<?php echo URLROOT; ?>/users/account" class="nav-link px-2 link-dark">My Account</a></li>
+        <li><a  href="<?php echo URLROOT; ?>/users/myBookings" class="nav-link px-2 link-dark">Booking</a></li>
+        <li><a href="<?php echo URLROOT; ?>/users/account" class="nav-link px-2 link-dark">My Account</a></li>
         <li><a href="<?php echo URLROOT; ?>/users/logout" class="nav-link px-2 link-dark">Logout</a></li>
           
           <?php endif; ?>

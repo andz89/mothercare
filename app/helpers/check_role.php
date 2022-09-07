@@ -1,18 +1,26 @@
 <?php
   // Simple page redirect
-  function userRoleEqualtoAdmin(){
+  // function userRoleEqualtoAdmin($page){
+  //   if(isset($_SESSION['user_id']) && $_SESSION['user_role'] == 'admin'){
+  //       return true;
+  //   }else{
+  //           redirect($page);
+  //   }
+  // }
+  function userRoleEqualtoAdmin($page){
     if(isset($_SESSION['user_id']) && $_SESSION['user_role'] == 'admin'){
         return true;
     }else{
-            redirect('index');
+            redirect($page);
     }
   }
-
-  function userRoleEqualtoUser(){
+  function userRoleEqualtoUser($page){
     if(isset($_SESSION['user_id']) && $_SESSION['user_role'] == 'user'){
         return true;
     }else{
-            redirect('index');
+   
+        redirect($page);
+    
     }
   }
 
@@ -22,3 +30,13 @@
     }
 
   }
+  function ID_isNull($id,$page){
+    if(isset($id)== true){
+  
+          return true;
+      }else{
+          redirect($page);
+          return false;
+      }
+  }
+  

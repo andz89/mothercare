@@ -2,6 +2,8 @@
 class Pages extends Controller{
     public function __construct(){
         $this->doctorModel = $this->model('doctor');
+        $this->userModel = $this->model('user');
+
     }
 
     public function index(){
@@ -22,5 +24,15 @@ class Pages extends Controller{
         $this->view('pages/doctor',  $data);
        
     }
-   
+    public function contact(){
+        $contact =  $this->userModel->getContact();
+        $data= ['contact' => $contact->telephone,
+        'email' => $contact->email,
+        'address' => $contact->address
+                   
+      ];
+      $this->view('pages/contact', $data);
+ 
+      
+    }
 }

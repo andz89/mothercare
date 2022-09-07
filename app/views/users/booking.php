@@ -16,13 +16,13 @@ require APPROOT . '/views/inc/navbar.php';
         <h2 class="mt-1">Book Appointment</h2>
         <p>Please fill out this form to book appointment with us</p>
 
-        <span><span class="fw-bold">Name: </span><?php echo  $_SESSION['user_name'] ?></span>
+        <span><span class="fw-bold">Patient Name: </span><?php echo  $_SESSION['user_name'] ?></span>
         <span><span class="fw-bold">Email: </span><?php echo  $_SESSION['user_email']?></span>
         <span><span class="fw-bold">Contact No. : </span><?php echo   $_SESSION['user_contact_number'] ?></span>
-        <span><span class="fw-bold">Doctor : </span><?php echo $data['doctor_name']; ?></span>
-
-        <form action="<?php echo URLROOT; ?>/users/booking" method="post">
-  
+        <span><span  class="fw-bold">Doctor : </span><?php echo $data['doctor_name']; ?></span>
+ 
+        <form action="<?php echo URLROOT; ?>/users/booking?id=<?php echo $data['doctor_id']?>" method="post">
+   
           <div class="form-group mt-3">
             <label for="date">date: <sup>*</sup></label>
             <input type="date" name="date" class="form-control form-control-lg <?php echo (!empty($data['date_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['date']; ?>">
@@ -33,7 +33,8 @@ require APPROOT . '/views/inc/navbar.php';
             <input type="time" name="time" class="form-control form-control-lg <?php echo (!empty($data['time_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['time']; ?>">
             <span class="invalid-feedback"><?php echo $data['time_err']; ?></span>
           </div>
-          <input type="hidden" name="role" value="user">
+  
+      
       
           
           

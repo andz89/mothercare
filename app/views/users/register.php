@@ -5,7 +5,7 @@ userRoleEqualtoAdmin_display_navbar();
 //navbar as user
 require APPROOT . '/views/inc/navbar.php'; 
 ?>
-    <div class="col-md-5 mx-auto mb-5 ">
+    <div class="col-md-5 mx-auto my-5 ">
       <div class="card card-body bg-light ">
         <h2>Create An Account</h2>
         <p>Please fill out this form to register with us</p>
