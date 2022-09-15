@@ -160,4 +160,19 @@ public function update_contact($data){
   }
  
 }
+
+public function delete_doctor($id){
+print_r($id);
+  $this->db->query('DELETE FROM doctors WHERE id = :id');
+  // Bind values
+  $this->db->bind(':id', $id);
+
+  // Execute
+  if($this->db->execute()){
+    return true;
+  } else {
+    return false;
+  }
+ 
+}
 }

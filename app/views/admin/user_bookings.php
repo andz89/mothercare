@@ -10,7 +10,7 @@ require APPROOT . '/views/inc/navbar.php';
 <div class="container col-md-8 mx-auto my-3">
     
 <div class="list-group ">
-    <div class="bg-dark p-4 text-white">
+    <div class="p-4 text-white" style="background-color:#EE6983;">
         <h4>List of Bookings</h4>
         <hr class="my-4 bg-white p-0 m-0">
         <!-- <span>Total no. of bookings: <b><?php echo $data['total_bookings'] ?> </b></span> -->

@@ -8,7 +8,7 @@ require APPROOT . '/views/inc/navbar.php';
 
 
 
-<div class="p-0 m-0  text-center">
+<div class="p-0 mb-5  text-center">
     <img class="mx-auto mb-3" src="<?php echo URLROOT;?>/images/mothercare_1.png" width="100%"  alt="" >
     <h1 class="display-6 fw-bold text-secondary" style="font-family: 'Dancing Script', cursive;">MotherCare for you baby</h1>
     <div class="col-lg-9 mx-auto">

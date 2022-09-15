@@ -1,7 +1,7 @@
 
 
 
-  <footer class=" pt-3 pb-0 my-4 border-top mt-5">
+  <footer class=" pt-3 pb-3 border-top">
     <div class=" d-flex justify-content-center ">
       <div class="text-center">
       <a href="/" class="m-0  text-muted text-decoration-none ">

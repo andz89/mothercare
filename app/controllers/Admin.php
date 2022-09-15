@@ -4,10 +4,10 @@ class Admin extends Controller{
         $this->userModel = $this->model('user');
         $this->doctorModel = $this->model('doctor');
 
-      if(isset( $_SESSION['user_role']) && $_SESSION['user_role'] == 'user'){
+      if(isset( $_SESSION['user_role'])&& $_SESSION['user_role'] == 'user'){
       redirect('index');
       return false;
-      };
+      }
    
     }
 
@@ -420,5 +420,15 @@ class Admin extends Controller{
             }
           
       
+            }
+
+            public function delete(){
+             
+              if($_SERVER['REQUEST_METHOD'] == 'POST'){
+              
+                if($this->userModel->delete_doctor($_GET['id'])){
+                  redirect('admin/doctors');
+                }
+              }
             }
 }

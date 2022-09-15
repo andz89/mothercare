@@ -6,9 +6,12 @@
 
         </div>
 
-  <div class="login  " style ="height:350px; margin-bottom:100px;">
+  <div class="login  " style ="height:350px; margin-bottom:200px;">
     <div class="col-md-4 mx-auto ">
-      <div class="card card-body bg-light mt-3 ">
+      
+      <div class="card card-body bg-light mt-3 mb-5 ">
+  
+
         <h2>Update Contact</h2>
        
         <form action="<?php echo URLROOT; ?>/admin/contact" method="post">

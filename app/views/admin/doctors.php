@@ -34,12 +34,13 @@
                             </div>
                            
                             <div>
+                         
                             <span  class="btn btn-primary btn-sm m-0">
                             <a href="<?php echo URLROOT;?>/admin/edit_doctor?id=<?php echo $doctors->id ?>" class="text-white text-decoration-none">
                             Edit Profile
                             </a>
-                         
                             </span>
+
                             <span  class="btn btn-secondary btn-sm m-0" data-bs-toggle="collapse" href="#a<?php echo $doctors->id ?>" role="button" aria-expanded="false" aria-controls="a<?php echo $doctors->id ?>">
                             View More
                             </span>
@@ -64,7 +65,14 @@
        
             
             </div>
-         
+                <div class="d-flex justify-content-end">
+                  <form action="<?php echo URLROOT;?>/admin/delete?id=<?php echo $doctors->id ?> " method="post">
+                  <input value="Remove Doctor" type='submit'  class=" btn  btn-danger btn-sm m-0 text-white text-decoration-none float-right">
+                  </form>
+                </div>
+                          
+     
+
             </div>
               </div>
               

@@ -1,9 +1,10 @@
 <?php require APPROOT . '/views/inc/header.php';?>  
-  <div class="login "  style="height:400px; margin-top: 100px">
-    <div class="col-md-5 mx-auto">
-      <div class="card card-body bg-light mt-5">
+<div  class="" style="background-color:#EE6983;height:550px" >
+<div class="login "  style="padding-top:100px">
+    <div class="col-md-5 mx-auto " >
+      <div class="card card-body bg-light mb-0">
  
-        <h2>Login as Administrator</h2>
+        <h2>Login as Admin</h2>
         <p>Please fill in your credentials to log in</p>
         <form action="<?php echo URLROOT; ?>/admin/index" method="post">
           <div class="form-group ">
@@ -26,4 +27,6 @@
       </div>
     </div>
   </div>
+</div>
+ 
   <?php require APPROOT . '/views/inc/footer.php'; ?>

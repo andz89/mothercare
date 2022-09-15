@@ -5,7 +5,7 @@ userRoleEqualtoAdmin_display_navbar();
 //navbar as user
 require APPROOT . '/views/inc/navbar.php'; 
 ?>
-<div class="col-md-6 mx-auto " style="height:350px; margin-top: 70px;">
+<div class="col-md-6 mx-auto " style="height:410px; margin-top: 70px;">
 <div class="booking-header p-2 text-white" style="background-color:#EE6983;" >
 <h5>Your Account</h5>
         

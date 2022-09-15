@@ -7,7 +7,7 @@ userRoleEqualtoAdmin_display_navbar();
 require APPROOT . '/views/inc/navbar.php'; 
 ?>
 
-<div class="contact">
+<div class="contact " style="height:450px ;">
 <div class="contact-container col-md-6 mx-auto my-5" style="border: 1px solid #aaa6a6">
 
   <div class="booking-header p-2 text-white" style="background-color:#EE6983;" >

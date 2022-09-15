@@ -251,7 +251,6 @@ class Users extends Controller{
            }else{
              $data['password_err'] = 'Password incorrect';
         
-
              $this->view('users/login', $data);
            }
           }else{
@@ -265,7 +264,7 @@ class Users extends Controller{
             'password' => '',
             'email_err' => '',
             'password_err' => '',   
-              
+
 
           ];
   

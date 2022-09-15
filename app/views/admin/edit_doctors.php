@@ -3,7 +3,7 @@
 <?php require APPROOT . '/views/inc/navbar_admin.php'; ?>
  <div class="container my-5">
     <a  href="<?php echo URLROOT;?>/admin/doctors" class="btn btn-md btn-primary mb-3"><-Back</a>
-    <h3>Edit room in Avida Hotel</h3>
+    <h3>Edit Doctor Profile</h3>
     <form action="<?php echo URLROOT; ?>/admin/edit_doctor?id=<?php echo $data['id'] ?> "  method="post" enctype="multipart/form-data">
   <div class="form-group">
     <label for="doctor_name">doctor Name</label>
