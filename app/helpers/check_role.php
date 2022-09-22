@@ -13,10 +13,10 @@
     }
   }
   function userRoleEqualtoUser($page){
-    if(!isLoggedIn()){
-      redirect($page);  
+    // if(!isLoggedIn()){
+    //   redirect($page);  
       
-    }
+    // }
     if(isset($_SESSION['user_id']) && !$_SESSION['user_role'] == 'user'){
       redirect($page);  
     }

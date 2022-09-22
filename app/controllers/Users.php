@@ -3,9 +3,6 @@ class Users extends Controller{
     public function __construct(){
       $this->userModel = $this->model('User');
       $this->doctorModel = $this->model('doctor');
-
-
-
     }
 
     public function index(){
