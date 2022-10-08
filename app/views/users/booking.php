@@ -25,17 +25,18 @@ require APPROOT . '/views/inc/navbar.php';
    
           <div class="form-group mt-3">
             <label for="date">date: <sup>*</sup></label>
-            <input type="date" name="date" class="form-control form-control-lg <?php echo (!empty($data['date_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['date']; ?>">
+            <input  id="date" name="date" class="form-control form-control-lg <?php echo (!empty($data['date_err'])) ? 'is-invalid' : '';  ?>" placeholder="Date" >
             <span class="invalid-feedback"><?php echo $data['date_err']; ?></span>
           </div>
+
+
           <div class="form-group mt-3">
             <label for="time">Time: <sup>*</sup></label>
-            <input type="time" name="time" class="form-control form-control-lg <?php echo (!empty($data['time_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['time']; ?>">
+            <input readonly type="time" name="time" class="form-control form-control-lg <?php echo (!empty($data['time_err'])) ? 'is-invalid' : ''; ?>" value="08:00" />
             <span class="invalid-feedback"><?php echo $data['time_err']; ?></span>
           </div>
   
-      
-      
+       
           
           
           <div class="form-group mt-3">
@@ -54,5 +55,42 @@ require APPROOT . '/views/inc/navbar.php';
         </form>
       </div>
     </div>
+  <span class="test-dates"><?php echo "2022-10-18"?> </span>
+
+
+
 
 <?php require APPROOT . '/views/inc/footer.php'; ?>
+
+<script>
+
+let date =  new Date();
+let dates_enable =  document.querySelector('.test-dates').innerHTML
+flatpickr('#date', {
+disable:[date,
+function(date) {
+     // return true to disable
+     //disable saturday and sunday
+     return (
+       date.getDay() === 0 ||
+       date.getDay() === 1 ||
+       date.getDay() === 2 ||
+       date.getDay() === 3 ||
+       date.getDay() === 4 ||
+       date.getDay() === 5 ||
+       date.getDay() === 6
+     
+       );
+
+ }
+],
+enable: [ dates_enable ],
+
+dateFormat: 'Y-m-d',
+minDate: "today",
+
+
+
+}       
+);
+</script>

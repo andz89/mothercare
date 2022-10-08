@@ -3,7 +3,7 @@
 
     <div class="col-md-5 mx-auto my-5 ">
       <div class="card card-body bg-light ">
-        <h2>Add Doctor</h2>
+        <h2>Add Doctor</h2>`
    
         <form action="<?php echo URLROOT; ?>/admin/add_doctor" method="post" enctype="multipart/form-data">
         <div class="form-group">

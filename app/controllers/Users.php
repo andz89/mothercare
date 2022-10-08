@@ -113,6 +113,7 @@ class Users extends Controller{
       
       }
       public function booking(){
+      $date_today =  date("Y-m-d");
        userRoleEqualtoUser('users/login');
         ID_isNull($_GET['id'], 'index');# check  id
           $doctor_profile = $this->doctorModel->getDoctor($_GET['id']);

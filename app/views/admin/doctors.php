@@ -34,7 +34,11 @@
                             </div>
                            
                             <div>
-                         
+                            
+                            <a href="<?php echo URLROOT;?>/admin/schedule?id=<?php echo $doctors->id ?>" class="m-2 text-decoration-none">
+                            Number of Patient and Schedule
+                            </a>
+                          
                             <span  class="btn btn-primary btn-sm m-0">
                             <a href="<?php echo URLROOT;?>/admin/edit_doctor?id=<?php echo $doctors->id ?>" class="text-white text-decoration-none">
                             Edit Profile

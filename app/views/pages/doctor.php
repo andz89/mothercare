@@ -47,8 +47,10 @@ require APPROOT . '/views/inc/navbar.php';
                             <?php echo $doctors->description_1 ?>
                             </p>    
                         <form action="" method="post" class="">
-                        <a href="<?php echo URLROOT;?>/users/booking?id=<?php echo $doctors->id ?>" class="btn btn-sm text-white float-right " style="background-color:#EE6983;">
+                      
+                        <a href="<?php echo URLROOT;?>/users/booking?id=<?php echo $doctors->id ?>date = " class="btn btn-sm text-white float-right " style="background-color:#EE6983;">
                       Book Appointment</a>
+                     
                         </form>
                         </div>
                        
@@ -86,7 +88,14 @@ require APPROOT . '/views/inc/navbar.php';
 </div>
 </div>
 
+      <script>
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      var yyyy = today.getFullYear();
+      today =  yyyy + '-'+ mm + '-' + dd;
 
+      </script>
 
 
 
