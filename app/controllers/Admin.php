@@ -433,13 +433,61 @@ class Admin extends Controller{
             }
 
             public function schedule(){
+              $doctor =  $this->doctorModel->getDoctor($_GET['id']);
               if($_SERVER['REQUEST_METHOD'] == 'POST'){
+             
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                 
+                $data = [
+                  'date'=> $_POST['date'],
+                  'time'=> $_POST['time'],
+                  'reminders'=> $_POST['reminders'],
+                  'date_err'=> '',
+                  'time_err' => '',
+                  'reminders_err'=> '',
+
+                  //not included
+                  'doctor'=>$doctor->doctor_name,
+
+                ];
+              // Validate date
+              if(empty($data['date'])){
+              $data['date_err'] = 'Pleae enter date';
+              }
+              // Validate time
+              if(empty($data['time'])){
+                $data['time_err'] = 'Pleae enter time';
+                }
+                  // Validate reminders
+              if(empty($data['reminders'])){
+                $data['reminders_err'] = 'Please enter reminders';
+                }
+           
+              // Make sure errors are empty
+              if(empty($data['date_err']) && empty($data['time_err']) && empty($data['reminders_err']) ){
+              // Validated
+
+              echo 'sss';
+         
+              // if($this->userModel->register($data)){
+           
+              // } else {
+              // die('Something went wrong');
+              // }
+
+              } else {
+          
+              // Load view with errors
+              $this->view('admin/schedule' , $data);
+              }
+
 
               }else{
+
                 $data = [
-                  'date' => '',
+                  'date'=> '',
+                  'time'=> '',
+                  'reminders'=>'',
+                  'doctor'=>$doctor->doctor_name,
                 ];
               $this->view('admin/schedule', $data);
   
