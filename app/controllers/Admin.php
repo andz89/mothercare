@@ -434,6 +434,7 @@ class Admin extends Controller{
 
             public function schedule(){
               $doctor =  $this->doctorModel->getDoctor($_GET['id']);
+              $sched =  $this->userModel->getSched($_GET['id']);
               if($_SERVER['REQUEST_METHOD'] == 'POST'){
              
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -441,12 +442,15 @@ class Admin extends Controller{
                   'date'=> $_POST['date'],
                   'time'=> $_POST['time'],
                   'reminders'=> $_POST['reminders'],
+                  'doctor_id'=> $doctor->id,
                   'date_err'=> '',
                   'time_err' => '',
                   'reminders_err'=> '',
-
+            
                   //not included
                   'doctor'=>$doctor->doctor_name,
+                  'sched'=> $sched,
+                 
 
                 ];
               // Validate date
@@ -466,13 +470,14 @@ class Admin extends Controller{
               if(empty($data['date_err']) && empty($data['time_err']) && empty($data['reminders_err']) ){
               // Validated
 
-              echo 'sss';
+             
          
-              // if($this->userModel->register($data)){
-           
-              // } else {
-              // die('Something went wrong');
-              // }
+              if($this->userModel->schedule($data)){
+                flash('add_sched', 'shedule added successfuly');
+                redirect('admin/schedule?id='. $_GET['id']);
+              } else {
+              die('Something went wrong');
+              }
 
               } else {
           
@@ -482,16 +487,25 @@ class Admin extends Controller{
 
 
               }else{
-
+          
+     
                 $data = [
                   'date'=> '',
-                  'time'=> '',
+                  'time'=> '08:00',
                   'reminders'=>'',
                   'doctor'=>$doctor->doctor_name,
+
+                  'sched'=> $sched,
+               
                 ];
               $this->view('admin/schedule', $data);
   
               }
          
+            }
+            public function edit_schedule(){
+              if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                
+              }
             }
 }

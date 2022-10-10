@@ -1,14 +1,18 @@
 
 <?php require APPROOT . '/views/inc/header.php';?>
 <?php require APPROOT . '/views/inc/navbar_admin.php'; ?>
-
-<div class="container-xxl mt-4 col-md-11 mx-auto"   >
-
+<style>
+.option-btn span:hover{
+text-decoration: underline;
+}
+</style>
+<div class="container-xxl  col-md-11 mx-auto mb-4" style="height: 800px;"  >
+      
    <div class="d-flex justify-content-start  gap-3 " style="width:100%">
      
       
          
-            <form action="<?php echo URLROOT; ?>/admin/schedule?id=<?php echo $_GET['id'] ?>" method="post" >
+            <form action="<?php echo URLROOT; ?>/admin/schedule?id=<?php echo $_GET['id'] ?>" method="post" class="mt-3">
 
                 <div class="">
                     
@@ -48,23 +52,31 @@
        
 
     <div id="set-schedule" style="width:100%;">
-        <h3 class="text-center">Schedule and Time of <?php echo $data['doctor'] ?></h3>
-        <div style="width:100%; height:600px; overflow:auto; background-color:#e6e5e5" class="mb-3 px-2">
-                <div class="list-group mt-2 mb-0">
+    <div  style="height: 30px;">
+        <div class="alert-flash text-center"> <?php flash('add_sched'); ?></div>
+        </div>
+        <h3 class="text-center mt-1">Schedule and Time of <?php echo $data['doctor'] ?></h3>
+        <div id="sched" style="width:100%; height:500px; overflow:auto; background-color:#e6e5e5" class="mb-3 px-2">
+
+        <?php if($data['sched']): ?>
+        <?php foreach($data['sched'] as $data ): ?>
+         
+                <div class="list-group mt-1 mb-0">
                 <div class="list-group-item  mb-0 pb-0" aria-current="true">
                 <div class="d-flex w-100 justify-content-between">
                     <div>
-                    <span> Date: </span> <b> 2022-10-23  </b>  
-                    <span> Time: </span> <b> 08:00 </b>  
+                    <span ><?php echo $data->id ?></span>
+                    <span> Date: </span> <b> <?php echo $data->date ?> </b>  
+                    <span> Time: </span> <b> <?php echo $data->time ?></b>  
                     </div>
-                    <div>
-                    <small>Edit</small>
-                    <small>Remove</small>
+                    <div class="option-btn">
+                    <span class="text-info" style="cursor:pointer ;" data-bs-toggle="modal" data-bs-target="#d<?php echo $data->id ?>">Edit</span>
+                    <span class="text-info" style="cursor:pointer ;">Remove</span>
                     </div>
               
                 </div>
                 <div class="mb-1">
-                <small >Reminders:</small> <b> Bring your record book  </b> 
+                <small >Reminders:</small> <b><?php echo $data->reminders ?> </b> 
 
                 </div>
             
@@ -72,6 +84,33 @@
 
                 </div>
 
+                <!-- Modal -->
+                <div class="modal fade" id="d<?php echo $data->id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                       <textarea name="" id="" style="width:100%;padding:15px;" rows="3"><?php echo $data->reminders ?></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <form action="<?php echo URLROOT; ?>/admin/edit_schedule?id=<?php echo $data->id ?>" method="post">
+                        <input type="button" class="btn btn-primary" value="Save changes">
+                        </form>
+                     
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+                <?php endforeach; ?>
+
+                <?php else: ?>
+                <h4 class="text-center m-5 text-secondary">No Schedule found</h4>
+                <?php endif; ?>
            
         </div>
 
@@ -80,12 +119,14 @@
             
 </div>
 
+
 <?php require APPROOT . '/views/inc/footer.php';?>
 
 
 
 <script>
-
+  <?php echo alert_flash(); ?>
+ 
 
 
 

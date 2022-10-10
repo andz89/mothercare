@@ -175,4 +175,33 @@ print_r($id);
   }
  
 }
+ // add schedule
+ public function schedule($data){
+  $this->db->query('INSERT INTO schedule (date, time,doctor_id,reminders) VALUES(:date, :time, :doctor_id, :reminders)');
+  // Bind values
+  $this->db->bind(':date', $data['date']);
+  $this->db->bind(':time', $data['time']);
+  $this->db->bind(':doctor_id', $data['doctor_id']);
+  $this->db->bind(':reminders', $data['reminders']);
+
+
+
+  // Execute
+  if($this->db->execute()){
+    return true;
+  } else {
+    return false;
+  }
+}
+//get Sched
+public function getSched($id){
+    
+  $this->db->query('SELECT * FROM schedule WHERE doctor_id = :doctor_id');
+  $this->db->bind(':doctor_id', $id);
+ 
+  $results = $this->db->resultSet();
+ 
+  return $results;
+ 
+}
 }
