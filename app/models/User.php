@@ -204,4 +204,23 @@ public function getSched($id){
   return $results;
  
 }
+
+
+public function edit_schedule($data){
+
+  $this->db->query('UPDATE schedule SET time = :time, reminders = :reminders  WHERE id = :id');
+
+  // Bind values
+  $this->db->bind(':id', $data['sched-id']);
+  $this->db->bind(':time', $data['time']);
+  $this->db->bind(':reminders', $data['reminders']);
+
+  // Execute
+  if($this->db->execute()){
+    return true;
+  } else {
+    return false;
+  }
+ 
+}
 }

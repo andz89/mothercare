@@ -113,12 +113,13 @@ class Users extends Controller{
       
       }
       public function booking(){
-      $date_today =  date("Y-m-d");
+   
        userRoleEqualtoUser('users/login');
         ID_isNull($_GET['id'], 'index');# check  id
+
           $doctor_profile = $this->doctorModel->getDoctor($_GET['id']);
-        
-            
+          $sched_dates = $this->userModel->getSched($_GET['id']);
+      
         // Check for POST
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
           // Process form
@@ -177,9 +178,14 @@ class Users extends Controller{
 
         } else {
         
+          $array_sched =[];
+          foreach($sched_dates as $date){
+     
+          array_push($array_sched, $date);
+          
+          }
 
-         
-          // Init dataf
+          // Init data
           $data =[
 
             'doctor_id'=> $doctor_profile->id,
@@ -190,7 +196,8 @@ class Users extends Controller{
             'date_err' => '',
             'time_err' => '',
             'note_err' => '',
-
+            'array_sched'=>$array_sched,
+   
           ];
       
           // Load view

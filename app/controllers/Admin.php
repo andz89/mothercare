@@ -505,7 +505,31 @@ class Admin extends Controller{
             }
             public function edit_schedule(){
               if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                  $data = [
+                    'time'=> $_POST['time'],
+                    'reminders'=> $_POST['reminders'],
+                    'sched-id'=>  $_GET['id'],
+                    //not included
+                    'doctor_id'=> $_POST['doctor_id']
+                  ];
+                     // Validate edit time
+                if(empty($data['time'])){
+                $data['time_err'] = 'Pleae enter time';
+                }
+                // Validate edit -reminders
+                if(empty($data['reminders'])){
+                  $data['reminders_err'] = 'Pleae enter time';
+                  }
+                // Make sure errors are empty
+              if(empty($data['time_err']) &&  empty($data['reminders_err']) ){
+                if($this->userModel->edit_schedule($data)){
+                  // flash('edit_sched', 'update shedule  successfuly');
+                  redirect('admin/schedule?id='. $data['doctor_id']);
+                } else {
+                die('Something went wrong');
+                }
+              };
               }
             }
 }

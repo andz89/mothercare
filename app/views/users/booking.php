@@ -4,8 +4,13 @@ require APPROOT . '/views/inc/header.php';
 userRoleEqualtoAdmin_display_navbar();
 //navbar as user
 require APPROOT . '/views/inc/navbar.php'; 
+
+
+
+
 ?>
 
+    
 <div class="col-md-5 mx-auto mt-3 mb-5  ">
       <div class="card card-body bg-light  ">
         <p >
@@ -32,7 +37,7 @@ require APPROOT . '/views/inc/navbar.php';
 
           <div class="form-group mt-3">
             <label for="time">Time: <sup>*</sup></label>
-            <input readonly type="time" name="time" class="form-control form-control-lg <?php echo (!empty($data['time_err'])) ? 'is-invalid' : ''; ?>" value="08:00" />
+            <input id="time" readonly   name="time" class="form-control form-control-lg <?php echo (!empty($data['time_err'])) ? 'is-invalid' : ''; ?>"  />
             <span class="invalid-feedback"><?php echo $data['time_err']; ?></span>
           </div>
   
@@ -55,17 +60,35 @@ require APPROOT . '/views/inc/navbar.php';
         </form>
       </div>
     </div>
-  <span class="test-dates"><?php echo "2022-10-18"?> </span>
 
 
+  <div hidden class="sched_dates">
+  <?php foreach($data['array_sched'] as $date): ?>
+  <span> <?php echo $date->date; ?></span>
+  <?php endforeach; ?>
+  </div>
 
+  <div hidden class="sched">
+  <?php foreach($data['array_sched'] as $date): ?>
+    <div>
+    <span class="id"> <?php echo $date->id; ?></span>
+    <span class="d-date"><?php echo $date->date; ?></span>
+    <span class="t-time"> <?php echo $date->time; ?></span>
+    <span class="r-reminders"> <?php echo $date->reminders; ?></span>
+    </div>
 
-<?php require APPROOT . '/views/inc/footer.php'; ?>
+  <?php endforeach; ?>
+  </div>
+  <?php require APPROOT . '/views/inc/footer.php'; ?>
 
 <script>
 
+
+
+
 let date =  new Date();
-let dates_enable =  document.querySelector('.test-dates').innerHTML
+let dates_enable =  document.querySelector('.sched_dates').innerText
+
 flatpickr('#date', {
 disable:[date,
 function(date) {
@@ -84,11 +107,27 @@ function(date) {
 
  }
 ],
-enable: [ dates_enable ],
+enable:[ function(date) {
+            const rdatedData = `${dates_enable}`; 
+            return rdatedData.includes(date.toISOString().substring(0, 10));
+        }],
 
 dateFormat: 'Y-m-d',
 minDate: "today",
+onChange: function(){
 
+let selected = document.querySelector('#date').value
+let sched = document.querySelector('.sched')
+let date = sched.querySelectorAll('.d-date')
+
+date.forEach((e)=>{
+  if(e.innerText == selected){
+   let time =  e.parentElement.querySelector('.t-time').innerText 
+      document.querySelector('#time').value = time 
+    }
+})
+
+}
 
 
 }       

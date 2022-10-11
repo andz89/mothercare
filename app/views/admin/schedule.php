@@ -86,23 +86,34 @@ text-decoration: underline;
 
                 <!-- Modal -->
                 <div class="modal fade" id="d<?php echo $data->id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <form action="<?php echo URLROOT; ?>/admin/edit_schedule?id=<?php echo $data->id ?>" method="post">
                 <div class="modal-dialog">
                     <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                       <textarea name="" id="" style="width:100%;padding:15px;" rows="3"><?php echo $data->reminders ?></textarea>
-                    </div>
+                        <div class="modal-body">
+                            <div>
+                            <input type="time" name="time" class="form-control mb-2" value="<?php echo $data->time ?>">
+
+                            </div>
+                        <div>
+                        <textarea name="reminders" id="" class="form-control" rows="3"><?php echo $data->reminders ?></textarea>
+                        </div>
+                 
+                        <input name="doctor_id" type="text" hidden value="<?php echo $_GET['id']?>">
+                        </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <form action="<?php echo URLROOT; ?>/admin/edit_schedule?id=<?php echo $data->id ?>" method="post">
-                        <input type="button" class="btn btn-primary" value="Save changes">
-                        </form>
+                       
+                        <input type="submit" class="btn btn-primary" value="Save changes">
+                     
                      
                     </div>
                     </div>
+                    </form>
+
                 </div>
                 </div>
 

@@ -48,7 +48,7 @@ require APPROOT . '/views/inc/navbar.php';
                             </p>    
                         <form action="" method="post" class="">
                       
-                        <a href="<?php echo URLROOT;?>/users/booking?id=<?php echo $doctors->id ?>date = " class="btn btn-sm text-white float-right " style="background-color:#EE6983;">
+                        <a href="<?php echo URLROOT;?>/users/booking?id=<?php echo $doctors->id ?>"  class="btn btn-sm text-white float-right " style="background-color:#EE6983;">
                       Book Appointment</a>
                      
                         </form>
