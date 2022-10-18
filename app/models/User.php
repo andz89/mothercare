@@ -45,8 +45,8 @@
       }
         // Regsiter user
     public function add_booking($data){
-      $this->db->query('INSERT INTO booking (booking_id, user_id, user_name,user_email,contact_number,doctor_name,date,time,note) VALUES(:booking_id, :user_id, :user_name, :user_email, :contact_number,:doctor_name,:date, :time, :note)');
-      
+      $this->db->query('INSERT INTO booking (booking_id, user_id, user_name,user_email,contact_number,doctor_name,date,time,note,reminders) VALUES(:booking_id, :user_id, :user_name, :user_email, :contact_number,:doctor_name,:date, :time, :note, :reminders)');
+      print_r($data['reminders']);
       // Bind values
       $this->db->bind(':booking_id', $data['booking_id']);
       $this->db->bind(':user_id', $data['user_id']);
@@ -57,6 +57,8 @@
       $this->db->bind(':doctor_name', $data['doctor_name']);
       $this->db->bind(':date', $data['date']);
       $this->db->bind(':time', $data['time']);
+      $this->db->bind(':reminders', $data['reminders']);
+
 
 
 
@@ -204,7 +206,16 @@ public function getSched($id){
   return $results;
  
 }
-
+public function getSched_for_user($date){
+    
+  $this->db->query('SELECT * FROM schedule WHERE date = :date');
+  $this->db->bind(':date', $date);
+ 
+  $results = $this->db->resultSet();
+ 
+  return $results;
+ 
+}
 
 public function edit_schedule($data){
 

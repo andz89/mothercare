@@ -9,7 +9,18 @@ require APPROOT . '/views/inc/navbar.php';
 
 
 ?>
-
+<style>
+  textarea{
+    background-color: transparent;
+    border: none;
+    resize: none;
+  }
+  textarea:focus{
+    border: none;
+    outline: none;
+    resize: none;
+  }
+</style>
     
 <div class="col-md-5 mx-auto mt-3 mb-5  ">
       <div class="card card-body bg-light  ">
@@ -24,20 +35,29 @@ require APPROOT . '/views/inc/navbar.php';
         <span><span class="fw-bold">Patient Name: </span><?php echo  $_SESSION['user_name'] ?></span>
         <span><span class="fw-bold">Email: </span><?php echo  $_SESSION['user_email']?></span>
         <span><span class="fw-bold">Contact No. : </span><?php echo   $_SESSION['user_contact_number'] ?></span>
-        <span><span  class="fw-bold">Doctor : </span><?php echo $data['doctor_name']; ?></span>
- 
+        <span> <span  class="fw-bold">Doctor : </span><?php echo $data['doctor_name']; ?>  </span>
+
+     
+
+      
         <form action="<?php echo URLROOT; ?>/users/booking?id=<?php echo $data['doctor_id']?>" method="post">
-   
+        <div  class="bg-info p-3   reminders-container" style="display:none ;"> 
+        <div class="d-flex">
+        <span  class="fw-bold ">reminders :</span>
+             <textarea readonly name="reminders" class="reminders"> </textarea> 
+        </div>
+
+        </div> 
           <div class="form-group mt-3">
             <label for="date">date: <sup>*</sup></label>
-            <input  id="date" name="date" class="form-control form-control-lg <?php echo (!empty($data['date_err'])) ? 'is-invalid' : '';  ?>" placeholder="Date" >
+            <input  id="date" name="date" class="form-control form-control-lg <?php echo (!empty($data['date_err'])) ? 'is-invalid' : '';   ?>" value=<?php echo $data['date']; ?>  >
             <span class="invalid-feedback"><?php echo $data['date_err']; ?></span>
           </div>
 
 
           <div class="form-group mt-3">
             <label for="time">Time: <sup>*</sup></label>
-            <input id="time" readonly   name="time" class="form-control form-control-lg <?php echo (!empty($data['time_err'])) ? 'is-invalid' : ''; ?>"  />
+            <input id="time" readonly   name="time" class="form-control form-control-lg <?php echo (!empty($data['time_err'])) ? 'is-invalid' : ''; ?>" value=<?php echo $data['time']; ?> >
             <span class="invalid-feedback"><?php echo $data['time_err']; ?></span>
           </div>
   
@@ -123,7 +143,13 @@ let date = sched.querySelectorAll('.d-date')
 date.forEach((e)=>{
   if(e.innerText == selected){
    let time =  e.parentElement.querySelector('.t-time').innerText 
+   let reminders =  e.parentElement.querySelector('.r-reminders').innerText 
+
       document.querySelector('#time').value = time 
+
+      document.querySelector('.reminders-container').style.display = 'block'
+      document.querySelector('.reminders').value = reminders
+
     }
 })
 

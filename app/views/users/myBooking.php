@@ -17,6 +17,15 @@ require APPROOT . '/views/inc/navbar.php';
          
               <div>
               <li class="list-group-item mt-4 ">
+              <div class="bg-warning text-white card p-3 mb-1">
+                <span><b>Announcement:</b></span>
+                <?php echo $bookings->reminders ?>
+                </div>
+                <div class="bg-info text-white card p-3">
+                <span><b> Reminders from mother care:</b></span>
+                <?php echo $bookings->reminders ?>
+                </div>
+             
             <!-- <span class="btn btn-info btn-sm">Status: <?php echo $bookings->booking_status ?></span><br> -->
             <span><b> Booking ID:</b>  <?php echo $bookings->booking_id ?></span><br>
             <span><b> Patient Name:</b>  <?php echo $bookings->user_name ?></span><br>
@@ -24,7 +33,7 @@ require APPROOT . '/views/inc/navbar.php';
             <span><b>Contact: </b>  <?php echo $bookings->contact_number?></span><br>
             <span><b> Your Doctor:</b> <?php echo $bookings->doctor_name ?></span><br>
             <span><b> Schedule: </b> <?php echo $bookings->date ?></span> @ <?php echo $bookings->time ?><br>
-            <b> note: </b><br>
+            <b> Your note to mothercare: </b><br>
             <p > <?php echo $bookings->note ?></p>
             </li>
               </div>

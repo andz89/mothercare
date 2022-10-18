@@ -14,7 +14,7 @@ class Users extends Controller{
    
         // Check for POST
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-          userRoleEqualtoUser('users/register');
+          ('users/register');
           // Process form
           // sanitize post data
           $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -113,15 +113,18 @@ class Users extends Controller{
       
       }
       public function booking(){
-   
-       userRoleEqualtoUser('users/login');
+        if(!isLoggedIn()){
+          redirect('index');
+        }
+
         ID_isNull($_GET['id'], 'index');# check  id
 
           $doctor_profile = $this->doctorModel->getDoctor($_GET['id']);
           $sched_dates = $this->userModel->getSched($_GET['id']);
-      
+         
         // Check for POST
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        
           // Process form
           // sanitize post data
           $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -133,6 +136,7 @@ class Users extends Controller{
             'user_name'=> $_SESSION['user_name'],
             'user_email'=> $_SESSION['user_email'],
             'user_id'=>  $_SESSION['user_id'],
+            'reminders'=> $_POST['reminders'],
             'contact_number'=> $_SESSION['user_contact_number'],
             'date' => trim($_POST['date']),
             'time' => trim($_POST['time']),
@@ -143,6 +147,17 @@ class Users extends Controller{
             'note_err' => '',
           ];  
         
+          // $sched = $this->userModel->getSched($doctor_profile->id);
+          // foreach($sched as $value){
+          //   if($value->date == trim($_POST['date'])){
+          //     print_r($value->date);
+          //   }
+            
+
+          // }
+
+
+
           // validate date
           if(empty($data['date'])){
             $data['date_err'] = 'Pleae enter date';
@@ -211,7 +226,7 @@ class Users extends Controller{
       
         // Check for POST
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-          userRoleEqualtoUser('users/login');
+          ('users/login');
           // user_role('users/login');
 
           // Process form
@@ -309,8 +324,10 @@ class Users extends Controller{
        
       }
       public function myBookings(){
-        userRoleEqualtoUser('users/login'); 
+        ('users/login'); 
+       
         $booking =  $this->userModel->getAllBookings_as_user($_SESSION['user_id']);
+   
        $data =  ['booking'=> $booking,
            ];   
       
