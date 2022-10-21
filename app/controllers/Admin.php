@@ -532,4 +532,22 @@ class Admin extends Controller{
               };
               }
             }
+
+            public function announcement(){
+              if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                  $data = [
+                    'announcement'=> $_POST['announcement'],
+                    'doctor_id'=> $_POST['doctor_id'],
+                    'sched-id'=>  $_GET['id'],
+
+                  
+                  ];
+                if($this->userModel->announcement($data)){
+                  // flash('edit_sched', 'update shedule  successfuly');
+                  redirect('admin/schedule?id='. $data['doctor_id']);
+          
+                 }
+                }
+            }
 }

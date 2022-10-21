@@ -324,11 +324,14 @@ class Users extends Controller{
        
       }
       public function myBookings(){
-        ('users/login'); 
-       
+        // ('users/login'); 
+         
         $booking =  $this->userModel->getAllBookings_as_user($_SESSION['user_id']);
-   
+ 
+        $sched =  $this->userModel->getAllSched();
+      
        $data =  ['booking'=> $booking,
+                  'sched'=> $sched
            ];   
       
        $this->view('users/myBooking', $data);

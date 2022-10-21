@@ -12,16 +12,30 @@ require APPROOT . '/views/inc/navbar.php';
         <h4> Booking of <?php echo $_SESSION['user_name'] ?></h4> 
         
         </div>
+     
         <?php foreach($data['booking'] as  $bookings): ?>
        
-         
+        
               <div>
               <li class="list-group-item mt-4 ">
-              <div class="bg-warning text-white card p-3 mb-1">
-                <span><b>Announcement:</b></span>
-                <?php echo $bookings->reminders ?>
-                </div>
-                <div class="bg-info text-white card p-3">
+              
+                <?php foreach($data['sched'] as  $sched): ?>
+          <?php if( $sched->date == $bookings->date):  ?>
+                  <?php if($sched->announcement && ctype_space($sched->announcement) == 0):  ?>
+                    
+                    <?php echo ctype_space($sched->announcement)  ?>
+
+                  <div class="alert alert-warning  card p-2 mb-1">
+                  <span><b>Announcement:</b></span>
+                  <?php echo  $sched->announcement ?>
+                  </div>
+                  <?php endif; ?>
+          <?php endif; ?>
+
+          <?php endforeach; ?>
+
+              
+                <div class="alert-info card p-3">
                 <span><b> Reminders from mother care:</b></span>
                 <?php echo $bookings->reminders ?>
                 </div>

@@ -206,6 +206,16 @@ public function getSched($id){
   return $results;
  
 }
+public function getAllSched(){
+    
+  $this->db->query('SELECT * FROM schedule');
+
+ 
+  $results = $this->db->resultSet();
+ 
+  return $results;
+ 
+}
 public function getSched_for_user($date){
     
   $this->db->query('SELECT * FROM schedule WHERE date = :date');
@@ -225,6 +235,22 @@ public function edit_schedule($data){
   $this->db->bind(':id', $data['sched-id']);
   $this->db->bind(':time', $data['time']);
   $this->db->bind(':reminders', $data['reminders']);
+
+  // Execute
+  if($this->db->execute()){
+    return true;
+  } else {
+    return false;
+  }
+ 
+}
+public function announcement($data){
+
+  $this->db->query('UPDATE schedule SET  announcement = :announcement  WHERE id = :id');
+
+  // Bind values
+  $this->db->bind(':id', $data['sched-id']);
+  $this->db->bind(':announcement', $data['announcement']);
 
   // Execute
   if($this->db->execute()){

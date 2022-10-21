@@ -70,6 +70,7 @@ text-decoration: underline;
                     <span> Time: </span> <b> <?php echo $data->time ?></b>  
                     </div>
                     <div class="option-btn">
+                    <span class="text-info" style="cursor:pointer ;" data-bs-toggle="modal" data-bs-target="#announce<?php echo $data->id ?>">Announcement</span>
                     <span class="text-info" style="cursor:pointer ;" data-bs-toggle="modal" data-bs-target="#d<?php echo $data->id ?>">Edit</span>
                     <span class="text-info" style="cursor:pointer ;">Remove</span>
                     </div>
@@ -84,46 +85,81 @@ text-decoration: underline;
 
                 </div>
 
-                <!-- Modal -->
-                <div class="modal fade" id="d<?php echo $data->id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                <!-- Modal edit -->
+        <div class="modal fade" id="d<?php echo $data->id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
                 <form action="<?php echo URLROOT; ?>/admin/edit_schedule?id=<?php echo $data->id ?>" method="post">
                 <div class="modal-dialog">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                        <div class="modal-body">
-                            <div>
-                            <input type="time" name="time" class="form-control mb-2" value="<?php echo $data->time ?>">
+                <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <div>
+                <input type="time" name="time" class="form-control mb-2" value="<?php echo $data->time ?>">
 
-                            </div>
-                        <div>
-                        <textarea name="reminders" id="" class="form-control" rows="3"><?php echo $data->reminders ?></textarea>
-                        </div>
-                 
-                        <input name="doctor_id" type="text" hidden value="<?php echo $_GET['id']?>">
-                        </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                       
-                        <input type="submit" class="btn btn-primary" value="Save changes">
-                     
-                     
-                    </div>
-                    </div>
-                    </form>
+                </div>
+                <div>
+                <textarea name="reminders" id="" class="form-control" rows="3"><?php echo $data->reminders ?></textarea>
+                </div>
+
+                <input name="doctor_id" type="text" hidden value="<?php echo $_GET['id']?>">
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                <input type="submit" class="btn btn-primary" value="Save changes">
+
 
                 </div>
                 </div>
+                </div>
+                </form>
 
-                <?php endforeach; ?>
+         </div>
+                      <!-- Modal announce -->
+        <div class="modal fade" id="announce<?php echo $data->id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-                <?php else: ?>
-                <h4 class="text-center m-5 text-secondary">No Schedule found</h4>
-                <?php endif; ?>
+<form action="<?php echo URLROOT; ?>/admin/announcement?id=<?php echo $data->id ?>" method="post">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="exampleModalLabel">Announcement</h5>
+<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+
+<div>
+<textarea name="announcement" id="" class="form-control" rows="3"><?php echo $data->announcement ?></textarea>
+</div>
+
+<input name="doctor_id" type="text" hidden value="<?php echo $_GET['id']?>">
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+<input type="submit" class="btn btn-primary" value="Save changes">
+
+
+</div>
+</div>
+</div>
+</form>
+
+</div>
+
+                    <?php endforeach; ?>
+
+                    <?php else: ?>
+                    <h4 class="text-center m-5 text-secondary">No Schedule found</h4>
+                    <?php endif; ?>
+                </div>
+
+              
            
-        </div>
+            </div>
 
     </div>
    </div>
@@ -131,6 +167,8 @@ text-decoration: underline;
 </div>
 
 
+
+    
 <?php require APPROOT . '/views/inc/footer.php';?>
 
 
