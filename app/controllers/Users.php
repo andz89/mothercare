@@ -324,8 +324,11 @@ class Users extends Controller{
        
       }
       public function myBookings(){
-        // ('users/login'); 
-         
+       
+         if(!$_SESSION['user_id']){
+          redirect('index');
+          return false;
+         };
         $booking =  $this->userModel->getAllBookings_as_user($_SESSION['user_id']);
  
         $sched =  $this->userModel->getAllSched();
@@ -337,11 +340,13 @@ class Users extends Controller{
        $this->view('users/myBooking', $data);
       
       }
-      public function account(){
+      // public function account(){
 
-        $data =  [ ];   
+      //   $data =  [ ];   
     
-        $this->view('users/account');
+      //   $this->view('users/account');
     
-       }
+      //  }
+
+ 
 }

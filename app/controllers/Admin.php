@@ -550,4 +550,43 @@ class Admin extends Controller{
                  }
                 }
             }
+
+            public function list_patients(){
+
+     
+              if(!$_SESSION['user_id']){
+                if($_SESSION['user_id'] != 'admin'){
+                  redirect('index');
+                  return false;
+                }
+            
+               };
+
+               $patients  = $this->userModel->patients($_GET['id']);
+
+
+               if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                  $data = [
+                    'announcement'=> $_POST['announcement'],
+                    'doctor_id'=> $_POST['doctor_id'],
+                    'sched-id'=>  $_GET['id'],
+
+                  
+                  ];
+                if($this->userModel->announcement($data)){
+                  // flash('edit_sched', 'update shedule  successfuly');
+                  redirect('admin/schedule?id='. $data['doctor_id']);
+          
+                 }
+                }else{
+
+                }
+             $data =  [
+              'patient'=> $patients
+             ];   
+            
+             $this->view('admin/list_patients', $data);
+               
+              }
 }

@@ -45,8 +45,8 @@
       }
         // Regsiter user
     public function add_booking($data){
-      $this->db->query('INSERT INTO booking (booking_id, user_id, user_name,user_email,contact_number,doctor_name,date,time,note,reminders) VALUES(:booking_id, :user_id, :user_name, :user_email, :contact_number,:doctor_name,:date, :time, :note, :reminders)');
-      print_r($data['reminders']);
+      $this->db->query('INSERT INTO booking (booking_id, user_id, user_name,user_email,contact_number,doctor_name,date,time,note,reminders, doctor_id) VALUES(:booking_id, :user_id, :user_name, :user_email, :contact_number,:doctor_name,:date, :time, :note, :reminders,:doctor_id)');
+    
       // Bind values
       $this->db->bind(':booking_id', $data['booking_id']);
       $this->db->bind(':user_id', $data['user_id']);
@@ -58,6 +58,8 @@
       $this->db->bind(':date', $data['date']);
       $this->db->bind(':time', $data['time']);
       $this->db->bind(':reminders', $data['reminders']);
+      $this->db->bind(':doctor_id', $data['doctor_id']);
+
 
 
 
@@ -259,5 +261,14 @@ public function announcement($data){
     return false;
   }
  
+}
+public function patients($id){
+  $this->db->query('SELECT * FROM booking WHERE doctor_id = :doctor_id');
+  $this->db->bind(':doctor_id', $id);
+ 
+  $results = $this->db->resultSet();
+ 
+  return $results;
+
 }
 }

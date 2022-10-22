@@ -72,7 +72,7 @@ text-decoration: underline;
                     <div class="option-btn">
                     <span class="text-info" style="cursor:pointer ;" data-bs-toggle="modal" data-bs-target="#announce<?php echo $data->id ?>">Announcement</span>
                     <span class="text-info" style="cursor:pointer ;" data-bs-toggle="modal" data-bs-target="#d<?php echo $data->id ?>">Edit</span>
-                    <span class="text-info" style="cursor:pointer ;">Remove</span>
+                    <span><a class="text-info" style="text-decoration:none" href="<?php echo URLROOT; ?>/admin/list_patients?id=<?php echo $_GET['id'] ?>">Patients</a></span>
                     </div>
               
                 </div>

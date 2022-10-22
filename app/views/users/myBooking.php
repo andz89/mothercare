@@ -34,9 +34,8 @@ require APPROOT . '/views/inc/navbar.php';
 
           <?php endforeach; ?>
 
-              
-                <div class="alert-info card p-3">
-                <span><b> Reminders from mother care:</b></span>
+                <div class="">
+                <span><b> Things to Bring:</b></span>
                 <?php echo $bookings->reminders ?>
                 </div>
              
@@ -49,12 +48,13 @@ require APPROOT . '/views/inc/navbar.php';
             <span><b> Schedule: </b> <?php echo $bookings->date ?></span> @ <?php echo $bookings->time ?><br>
             <b> Your note to mothercare: </b><br>
             <p > <?php echo $bookings->note ?></p>
-            </li>
-              </div>
+           
 
        
          
             <?php endforeach; ?>
+            </li>
+              </div>
         </ul>
         </div>
         <?php require APPROOT . '/views/inc/footer.php';?>
