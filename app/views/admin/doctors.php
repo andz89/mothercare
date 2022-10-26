@@ -1,6 +1,10 @@
 <?php require APPROOT . '/views/inc/header.php';?>
 <?php require APPROOT . '/views/inc/navbar_admin.php'; ?>
-
+<style>
+a .sched:hover{
+  text-decoration: underline;
+}
+</style>
 <div class="container col-md-10 mx-auto my-0 py-0">
     
 
@@ -35,8 +39,11 @@
                            
                             <div>
                             
-                            <a href="<?php echo URLROOT;?>/admin/schedule?id=<?php echo $doctors->id ?>" class="m-2 text-decoration-none">
-                            Number of Patient and Schedule
+                            <a href="<?php echo URLROOT;?>/admin/schedule?id=<?php echo $doctors->id ?>" class="m-2 text-decoration-none ">
+                            <span class="sched">
+                            Time and Schedule
+                            </span>
+                   
                             </a>
                           
                             <span  class="btn btn-primary btn-sm m-0">

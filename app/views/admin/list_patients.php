@@ -4,29 +4,16 @@
     .hover_list:hover{
         background-color:#f4f4f4;
     }
+    .hide{
+      display: none;
+    }
 </style>
 <div class="col-md-8 mx-auto" style="min-height: 500px;">
 <div class="bg-light px-3 pt-3 rounded ">
     <h1>Dr. Amorillo Hermones </h1>
     <p class="lead "><b>List of Patients </b>  <a class="lead fs-12" href="/docs/5.2/components/navbar/" role="button">Download as docs »</a> </p>
    
-    <div class=" d-flex justify-content-end">
-    <div class="dropdown btn btn-sm btn-primary mb-2">
-    <div class=" dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Filter by date
-    </div>
-
-    <ul class="dropdown-menu">
-
-    <li><a class="dropdown-item rounded-2 active" href="#">Today</a></li>
-    <li><a class="dropdown-item rounded-2" href="#">This week</a></li>
-    <li><a class="dropdown-item rounded-2" href="#">This month</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item rounded-2" href="#">Custom</a></li>
-
-    </ul>
-    </div>
-    </div>
+ 
  
 
   
@@ -36,18 +23,18 @@
   </div>
 <div class="list-group w-auto">
 <?php foreach($data['patient'] as $patient_date ): ?>
-  <div class="border rounded-2 d-flex gap-3 p-2 mt-1 hover_list" >
+  <div class="border rounded-2 gap-3 p-2 mt-1 hover_list"  >
     
     <div class="d-flex gap-2 w-100 justify-content-between ">
       <div>
         <h6 class="mb-0"><?php echo $patient_date->user_name ?></h6>
-        <p class="mb-0 opacity-75">Date of colsultation: <?php echo $patient_date->date ?></p>
+        <p class="mb-0 opacity-75 ">Date of colsultation:<?php echo $patient_date->date ?></p>
       </div>
       <div>
   
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#patient<?php echo $patient_date->id ?>">
-  Launch demo modal
+<button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#patient<?php echo $patient_date->id ?>">
+  Show profile
 </button>
 
 <!-- Modal -->
@@ -76,7 +63,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
       </div>
     </div>
   </div>

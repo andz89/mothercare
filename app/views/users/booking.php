@@ -43,8 +43,8 @@ require APPROOT . '/views/inc/navbar.php';
         <form action="<?php echo URLROOT; ?>/users/booking?id=<?php echo $data['doctor_id']?>" method="post">
         <div  class="bg-info p-3   reminders-container" style="display:none ;"> 
         <div class="d-flex">
-        <span  class="fw-bold ">reminders :</span>
-             <textarea readonly name="reminders" class="reminders"> </textarea> 
+        <span  class="fw-bold ">reminders:</span>
+             <textarea readonly name="reminders" class="reminders" style="width: 100%;"> </textarea> 
         </div>
 
         </div> 
