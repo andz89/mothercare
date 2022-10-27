@@ -66,9 +66,10 @@
 
   public function update_doctor($data){
     
-    $this->db->query('UPDATE doctors SET doctor_name = :doctor_name, description_1 = :description_1,description_2 = :description_2,image_path = :image_path, email = :email WHERE id = :id');
+    $this->db->query('UPDATE doctors SET contact_number=:contact_number, doctor_name = :doctor_name, description_1 = :description_1,description_2 = :description_2,image_path = :image_path, email = :email WHERE id = :id');
     // Bind values
     $this->db->bind(':id', $data['id']);
+    $this->db->bind(':contact_number', $data['contact_number']);
     $this->db->bind(':doctor_name', $data['doctor_name']);
     $this->db->bind(':description_1', $data['description_1']);
     $this->db->bind(':description_2', $data['description_2']);

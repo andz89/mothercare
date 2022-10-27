@@ -234,9 +234,9 @@ class Admin extends Controller{
 
           public function user_bookings(){
             $bookings = $this->userModel->getAllBookings_as_admin();
-            //  $total_bookings =  $this->userModel->getCountBookings();
+             $total_bookings =  $this->userModel->getCountBookings();
             $data= ['booking' => $bookings,
-                      // 'total_bookings'=> $total_bookings          
+                      'total_bookings'=> $total_bookings          
           ];
           $this->view('admin/user_bookings', $data);
 
@@ -435,6 +435,9 @@ class Admin extends Controller{
             public function schedule(){
               $doctor =  $this->doctorModel->getDoctor($_GET['id']);
               $sched =  $this->userModel->getSched($_GET['id']);
+             
+         
+             
               if($_SERVER['REQUEST_METHOD'] == 'POST'){
              
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -448,6 +451,7 @@ class Admin extends Controller{
                   'reminders_err'=> '',
             
                   //not included
+       
                   'doctor'=>$doctor->doctor_name,
                   'sched'=> $sched,
                  
@@ -487,14 +491,14 @@ class Admin extends Controller{
 
 
               }else{
-          
+              
      
                 $data = [
                   'date'=> '',
                   'time'=> '08:00',
                   'reminders'=>'',
                   'doctor'=>$doctor->doctor_name,
-
+        
                   'sched'=> $sched,
                
                 ];
@@ -552,8 +556,8 @@ class Admin extends Controller{
             }
 
             public function list_patients(){
-
-     
+              $count_patients =  $this->userModel->getCountPatients($_GET['id'],$_GET['date']);
+              
               if(!$_SESSION['user_id']){
                 if($_SESSION['user_id'] != 'admin'){
                   redirect('index');
@@ -583,7 +587,8 @@ class Admin extends Controller{
 
                 }
              $data =  [
-              'patient'=> $patients
+              'patient'=> $patients,
+              'patient_count'=> $count_patients
              ];   
             
              $this->view('admin/list_patients', $data);

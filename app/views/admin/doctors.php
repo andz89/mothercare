@@ -34,7 +34,10 @@ a .sched:hover{
                         <div class="">
                             <div class="d-flex justify-content-between">
                             <div>
-                            <h6 class="text-body fs-4"><?php echo $doctors->doctor_name ?></h6>
+                            <h6 class="text-body fs-4 m-0"><?php echo $doctors->doctor_name ?></h6>
+                            <span class="text-secondary">Email: <b><?php echo $doctors->email ?> </b></span><br>
+                            <span class="text-secondary">Contact Number:  <b>  <?php echo $doctors->contact_number ?></b></span>
+
                             </div>
                            
                             <div>

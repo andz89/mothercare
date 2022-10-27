@@ -16,7 +16,7 @@ text-decoration: underline;
     display: none;
 }
 </style>
-<div class="container-xxl  col-md-11 mx-auto mb-4" style="height: 800px;"  >
+<div class="container-xxl  col-md-11 mx-auto mb-4"   >
       
    <div class="d-flex justify-content-start  gap-3 " style="width:100%">
      
@@ -39,7 +39,7 @@ text-decoration: underline;
         
                 <div class=" mb-1">
                 <label for=""><small>Time</small> </label>
-                <input type="time" name="time"  value="<?php echo $data['time'] ?>" class="form-control <?php echo (!empty($data['time_err'])) ? 'is-invalid' : ''; ?>" >
+                <input type="time" name="time"  value="<?php echo $data['time']; ?>"   class="form-control <?php echo (!empty($data['time_err'])) ? 'is-invalid' : ''; ?>" >
                 <span class="invalid-feedback"><?php echo $data['time_err']; ?></span>
                 </div>
 
@@ -69,26 +69,11 @@ text-decoration: underline;
         
 
         <div class=" d-flex justify-content-end my-2">
-        <!-- <div class="dropdown btn btn-sm btn-primary mb-2">
-        <div class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="filter_dropdown" >
-        Filter by date
-        </div>
-
-        <ul class="dropdown-menu">
-
-        <li><a class="dropdown-item rounded-2 today" href="#">Today</a></li>
-   
-        <li><a class="dropdown-item rounded-2 month" href="#">This month</a></li>
-        <li><a class="dropdown-item rounded-2 all" href="#">All</a></li>
-
-     
-
-        </ul>
-        </div> -->
+       
         <div >
         <span  class="btn  btn-sm text-info  all" > See all </span>
         </div>
-        <div >
+        <div>
         <span  class="btn  btn-sm btn-primary  custom" id="custom" > Select date </span>
         </div>
         </div>
@@ -96,29 +81,33 @@ text-decoration: underline;
   
 
         <div id="sched" style="width:100%; height:500px; overflow:auto; background-color:#e6e5e5" class="mb-3 px-2">
-
+      
         <?php if($data['sched']): ?>
-        <?php foreach($data['sched'] as $data ): ?>
+        <?php foreach($data['sched'] as $data_sched ): ?>
          
                 <div class="list-group mt-1 mb-0">
                 <div class="list-group-item  mb-0 pb-0" aria-current="true">
                 <div class="w-100 justify-content-between" style="display: flex;">
                     <div>
-                    <!-- <span ><?php echo $data->id ?></span> -->
-                    <span> Date: </span><b><span class="date"><?php echo $data->date ?></span></b>  
-                    <span> Time: </span> <b> <?php echo $data->time ?></b>  
-                    <span class=" p-1 rounded-1 text-info" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#d<?php echo $data->id ?>">Edit</span>
+                    <!-- <span ><?php echo $data_sched->id ?></span> -->
+                    <span> Date: </span><b><span class="date"><?php echo $data_sched->date ?></span></b>  
+                    <span> Time: </span> <b> <?php echo $data_sched->time ?></b>  
+                    <span class=" p-1 rounded-1 text-info" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#d<?php echo $data_sched->id ?>">Edit</span>
 
                     </div>
                     <div class="option-btn">
-                    <span class=" p-1 rounded-1 text-dark" style="cursor:pointer ;background-color:#c9c5c5" data-bs-toggle="modal" data-bs-target="#announce<?php echo $data->id ?>">Announcement</span>
-                    <span><a class=" p-1 rounded-1 text-dark" style="text-decoration:none;background-color:#c9c5c5" href="<?php echo URLROOT; ?>/admin/list_patients?id=<?php echo $_GET['id'] ?>">Patients</a></span>
+                   
+
+                    <span type="button" class=" p-1 rounded-1 text-dark" style="cursor:pointer ;background-color:#c9c5c5" data-bs-toggle="modal" data-bs-target="#announce<?php echo $data_sched->id?>">Announcement</span>
+
+
+                    <span><a class=" p-1 rounded-1 text-dark" style="text-decoration:none;background-color:#c9c5c5" href="<?php echo URLROOT; ?>/admin/list_patients?id=<?php echo $_GET['id']?>&date=<?php echo $data_sched->date ?>">Patients  </a></span>
                  
                     </div>
               
                 </div>
                 <div class="mb-1">
-                <small >Reminders:</small> <b><?php echo $data->reminders ?> </b> 
+                <small >Reminders:</small> <b><?php echo $data_sched->reminders ?> </b> 
 
                 </div>
             
@@ -128,9 +117,10 @@ text-decoration: underline;
 
 
                 <!-- Modal edit -->
-        <div class="modal fade" id="d<?php echo $data->id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="d<?php echo $data_sched->id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-                <form action="<?php echo URLROOT; ?>/admin/edit_schedule?id=<?php echo $data->id ?>" method="post">
+
+                <form action="<?php echo URLROOT; ?>/admin/edit_schedule?id=<?php echo $data_sched->id ?>" method="post">
                 <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -139,11 +129,11 @@ text-decoration: underline;
                 </div>
                 <div class="modal-body">
                 <div>
-                <input type="time" name="time" class="form-control mb-2" value="<?php echo $data->time ?>">
+                <input type="time" name="time" class="form-control mb-2" value="<?php echo $data_sched->time ?>">
 
                 </div>
                 <div>
-                <textarea name="reminders" id="" class="form-control" rows="3"><?php echo $data->reminders ?></textarea>
+                <textarea name="reminders" id="" class="form-control" rows="3"><?php echo $data_sched->reminders ?></textarea>
                 </div>
 
                 <input name="doctor_id" type="text" hidden value="<?php echo $_GET['id']?>">
@@ -159,11 +149,12 @@ text-decoration: underline;
                 </div>
                 </form>
 
-         </div>
-                      <!-- Modal announce -->
-        <div class="modal fade" id="announce<?php echo $data->id ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+</div>
 
-<form action="<?php echo URLROOT; ?>/admin/announcement?id=<?php echo $data->id ?>" method="post">
+
+                      <!-- Modal announce -->
+<div class="modal fade" id="announce<?php echo $data_sched->id?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form action="<?php echo URLROOT; ?>/admin/announcement?id=<?php echo $data_sched->id ?>" method="post">
             <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
@@ -173,7 +164,7 @@ text-decoration: underline;
             <div class="modal-body">
 
             <div>
-            <textarea name="announcement" id="" class="form-control" rows="3"><?php echo $data->announcement ?></textarea>
+            <textarea name="announcement" id="" class="form-control" rows="3"><?php echo $data_sched->announcement ?></textarea>
             </div>
 
             <input name="doctor_id" type="text" hidden value="<?php echo $_GET['id']?>">
@@ -187,7 +178,7 @@ text-decoration: underline;
             </div>
             </div>
             </div>                                                                                  
-</form>
+    </form>
 
 </div>
 
@@ -216,14 +207,18 @@ text-decoration: underline;
 
 <script>
   <?php echo alert_flash(); ?>
- 
-
-
-
-
+  let arr = []
+  let dates_disable = document.querySelectorAll('.date')
+    Array.from(dates_disable).forEach((e)=>{
+            e.innerText
+            arr.push(e.innerText)
+    })
 let date =  new Date();
 flatpickr('#date-enable', {
-disable:[date],
+disable:[ function(date) {
+            const rdatedData = `${arr}`; 
+            return rdatedData.includes(date.toISOString().substring(0, 10));
+        },date],
 dateFormat: 'Y-m-d',
 minDate: "today",
 inline: true,
@@ -237,38 +232,29 @@ onChange: function(){
 }  
 
 );
-let arr =[]
-var o =0
+
 flatpickr('#custom', {
-            disable:[],
             dateFormat: 'Y-m-d',
             // mode: "multiple",
             onChange: function(e){
+               
               let dates =  document.querySelector('#custom').value
          
-              
-                       
-                        let a = dates.split(',')
-                       
-                  
-
-              
+                      
                         let date_x = document.querySelectorAll('.date')
-                        // let month = date_today.split('-')[1]
-                        // var count = 0
            
                         for(var i=0; i<date_x.length; i++){
                         let date_element =  date_x[i].innerText
                         let parent = date_x[i].parentElement.parentElement.parentElement.parentElement
                         parent.style.display = 'none'
                  
-                            
-                            if(date_element == a){
+                        
+                            if(date_element.trim() == dates){
 
                         
                                parent.style.display = 'block'
                               
-
+                      
                             }
                             
                           
@@ -290,54 +276,18 @@ const result = date_filter.toLocaleDateString("en-GB", { // you can use undefine
   month: "2-digit",
   year: "numeric",
 })
-function reverseString(str) {
-    return str.split("/").reverse().join("-");
-}
- let date_today = reverseString(result);
+// function reverseString(str) {
+//     return str.split("/").reverse().join("-");
+// }
+//  let date_today = reverseString(result);
 
 document.body.addEventListener('click',(e)=>{
 
-      // if(e.target.classList.contains('today')){
-      //   let dates = document.querySelectorAll('.date')
-      //   for(var i=0; i<dates.length; i++){
-      //       if(dates[i].innerText != date_today){
-         
-      //           let parent = dates[i].parentElement.parentElement.parentElement.parentElement
-      
-      //       parent.style.display = 'none';
 
-      //       }
-   
-      //   }
-        
-      // }
-
-      // if(e.target.classList.contains('month')){
-      //   // let month = date_filter.getMonth() + 1;
-      //   let dates = document.querySelectorAll('.date')
-      //   let month = date_today.split('-')[1]
-    
-      //   for(var i=0; i<dates.length; i++){
-      //     let month_element =  dates[i].innerText.split('-')[1]
-      //     let parent = dates[i].parentElement.parentElement.parentElement.parentElement
-
-      //       if(month_element == month){
-         
-      
-      //       parent.style.display = 'block';
-
-      //       }else{
-   
-      
-      //        parent.style.display = 'none';
-      //       }
-   
-      //   }
-      // }
       if(e.target.classList.contains('all')){
         // let month = date_filter.getMonth() + 1;
         let dates = document.querySelectorAll('.date')
-        let month = date_today.split('-')[1]
+        // let month = date_today.split('-')[1]
     
         for(var i=0; i<dates.length; i++){
           let parent = dates[i].parentElement.parentElement.parentElement.parentElement
@@ -346,10 +296,7 @@ document.body.addEventListener('click',(e)=>{
          
         }
       }
-      if(e.target.classList.contains('custom')){
-    
-         
-      }
+   
    
 })
 

@@ -271,4 +271,26 @@ public function patients($id){
   return $results;
 
 }
+
+public function getCountPatients($id,$date){
+
+  $this->db->query('SELECT * FROM booking WHERE doctor_id = :doctor_id AND date= :date');
+  $this->db->bind(':doctor_id', $id);
+  $this->db->bind(':date', $date);
+
+  $this->db->resultSet();
+ 
+  return $this->db->rowCount();
+ 
+}
+public function getCountBookings(){
+
+  $this->db->query('SELECT * FROM booking');
+ 
+
+  $this->db->resultSet();
+ 
+  return $this->db->rowCount();
+ 
+}
 }

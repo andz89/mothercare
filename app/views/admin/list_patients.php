@@ -12,7 +12,7 @@
 <div class="bg-light px-3 pt-3 rounded ">
     <h1>Dr. Amorillo Hermones </h1>
     <p class="lead "><b>List of Patients </b>  <a class="lead fs-12" href="/docs/5.2/components/navbar/" role="button">Download as docs »</a> </p>
-   
+     <span>Total no. of Patients: <b> <?php echo $data['patient_count'] ?></b> </span>
  
  
 
@@ -21,8 +21,11 @@
 
 
   </div>
+
 <div class="list-group w-auto">
 <?php foreach($data['patient'] as $patient_date ): ?>
+<?php if($patient_date->date == $_GET['date']): ?>
+  
   <div class="border rounded-2 gap-3 p-2 mt-1 hover_list"  >
     
     <div class="d-flex gap-2 w-100 justify-content-between ">
@@ -94,6 +97,8 @@
 
 
   </div>
+  <?php endif; ?>
+
   <?php endforeach; ?>
 
 

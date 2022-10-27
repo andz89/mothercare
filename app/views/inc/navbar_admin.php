@@ -11,7 +11,7 @@
 
 <ul class="dropdown-menu dropdown-menu-dark">
 <a class="nav-link text-white" href="<?php echo URLROOT;?>/admin/index"> Dashboard </a>
-<a class="nav-link text-white" href="<?php echo URLROOT;?>/admin/doctors"> doctors </a>
+<a class="nav-link text-white" href="<?php echo URLROOT;?>/admin/doctors"> Doctors </a>
 <a class="nav-link text-white" href="<?php echo URLROOT;?>/admin/user_bookings"> Bookings</a>
 <a class="nav-link text-white" href="<?php echo URLROOT;?>/admin/contact">Contact</a>
 </ul>

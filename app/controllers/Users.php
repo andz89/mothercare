@@ -340,13 +340,13 @@ class Users extends Controller{
        $this->view('users/myBooking', $data);
       
       }
-      // public function account(){
+      public function account(){
 
-      //   $data =  [ ];   
+        $data =  [ ];   
     
-      //   $this->view('users/account');
+        $this->view('users/account');
     
-      //  }
+       }
 
  
 }
