@@ -341,12 +341,113 @@ class Users extends Controller{
       
       }
       public function account(){
+        $profile = $this->userModel->getProfile($_SESSION['user_id']);
+          
+        // Init data
+        $data =[
+          'name' => $profile->name,
+          'email' => $profile->email,
+          'contact_number' =>$profile->contact_number,
+          'name_err' => '',
+          'email_err' => '',
+          'contact_number_err' => '',
+        ];
+       $this->view('users/account',$data);
 
-        $data =  [ ];   
+      }
+      public function update_account(){
+        if(!$_SESSION['user_id']){
+          redirect('index');
+          return false;
+         };
+         if($_SESSION['user_role'] == 'admin'){
+          // redirect('index');
+          return false;
+         };
+
+         
+        // Check for POST
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        
+          // Process form
+          // sanitize post data
+          $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+          // init data
+      
+          $data =[
+            'name' => trim($_POST['name']),
+            'email' => trim($_POST['email']),
+            'contact_number' => trim($_POST['contact_number']),
+
+            'name_err' => '',
+            'email_err' => '',
+            // 'password_err' => '',
+            // 'confirm_password_err' => ''
+          ];
     
-        $this->view('users/account');
+          // validate email
+          if(empty($data['email'])){
+            $data['email_err'] = 'Pleae enter email';
+          } else {
+            // Check email
+            if($this->userModel->findUserByEmail_updateAccount($data['email'], $_SESSION['user_id'])){
+              $data['email_err'] = 'Email is already taken';
+            }
+          }
+          
+           // Validate Name
+        if(empty($data['name'])){
+          $data['name_err'] = 'Pleae enter name';
+        }
+        //validate number
+        if(empty($data['contact_number'])){
+          $data['contact_number_err'] = 'Pleae enter contact number';
+        }
+    
+      
+
+
+        // Make sure errors are empty
+        if(empty($data['email_err']) && empty($data['name_err'])){
+          // Validated
+        
+
+      
+             if($this->userModel->updateAccount($data, $_SESSION['user_id'])){
+              // flash('register_success', 'You are registered and can log in');
+            
+              redirect('users/account');
+            } else {
+              die('Something went wrong');
+            }
+
+        } else {
+          // Load view with errors
+           $this->view('users/update_account', $data);
+        }
+
+
+        } else {
+            $profile = $this->userModel->getProfile($_SESSION['user_id']);
+          
+          // Init data
+          $data =[
+            'name' => $profile->name,
+            'email' => $profile->email,
+            'contact_number' =>$profile->contact_number,
+            'name_err' => '',
+            'email_err' => '',
+            'contact_number_err' => '',
+          ];
+  
+          // Load view
+          $this->view('users/update_account', $data);
+  
+        }
+    
+     
     
        }
 
- 
+
 }

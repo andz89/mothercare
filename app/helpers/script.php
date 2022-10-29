@@ -28,10 +28,6 @@ function alert_flash(){
     return "
   
 
-
-
-
-
     let alert_flash = document.querySelector('.alert-flash')
     if(alert_flash.innerHTML == ' '){
 
@@ -46,3 +42,4 @@ function alert_flash(){
     
     ";
   }
+

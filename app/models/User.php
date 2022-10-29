@@ -23,6 +23,22 @@
         return false;
       }
     }
+         // UPDATE Find user by email
+         public function findUserByEmail_updateAccount($email, $id){
+          $this->db->query('SELECT * FROM users WHERE email = :email AND id != :id');
+          $this->db->bind(':email', $email);
+          $this->db->bind(':id', $id);
+
+    
+          $row = $this->db->single();
+    
+          // Check row
+          if($this->db->rowCount() > 0){
+            return true;
+          } else {
+            return false;
+          }
+        }
 
     // Regsiter user
     public function register($data){
@@ -164,6 +180,25 @@ public function update_contact($data){
   }
  
 }
+public function updateAccount($data, $id){
+
+  $this->db->query('UPDATE users SET contact_number = :contact_number, email = :email, name = :name WHERE id = :id');
+  // Bind values
+  $this->db->bind(':id', $id);
+  $this->db->bind(':contact_number', $data['contact_number']);
+  $this->db->bind(':email', $data['email']);
+  $this->db->bind(':name', $data['name']);
+
+
+
+  // Execute
+  if($this->db->execute()){
+    return true;
+  } else {
+    return false;
+  }
+ 
+}
 
 public function delete_doctor($id){
 print_r($id);
@@ -292,5 +327,13 @@ public function getCountBookings(){
  
   return $this->db->rowCount();
  
+}
+public function getProfile($id){
+  $this->db->query('SELECT * FROM users WHERE id = :id');
+  $this->db->bind(':id', $id);
+
+  $result = $this->db->single();
+ 
+  return $result;
 }
 }

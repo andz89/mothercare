@@ -49,6 +49,7 @@ require APPROOT . '/views/inc/navbar.php';
               <a href="<?php echo URLROOT; ?>/users/login" class="btn btn-light btn-block">Have an account? Login</a>
             </div>
           </div>
+</form>
       </div>
     </div>
 

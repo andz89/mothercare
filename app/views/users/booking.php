@@ -100,7 +100,7 @@ require APPROOT . '/views/inc/navbar.php';
   <?php endforeach; ?>
   </div>
   <?php require APPROOT . '/views/inc/footer.php'; ?>
-
+    
 <script>
 
 
