@@ -446,10 +446,11 @@ class Admin extends Controller{
                   'time'=> $_POST['time'],
                   'reminders'=> $_POST['reminders'],
                   'doctor_id'=> $doctor->id,
+                  'patient_limit'=> $_POST['patient_limit'],
                   'date_err'=> '',
                   'time_err' => '',
                   'reminders_err'=> '',
-            
+                  'patient_limit_err'=> '',
                   //not included
        
                   'doctor'=>$doctor->doctor_name,
@@ -457,9 +458,13 @@ class Admin extends Controller{
                  
 
                 ];
-              // Validate date
+                  // Validate date
               if(empty($data['date'])){
-              $data['date_err'] = 'Pleae enter date';
+                $data['date_err'] = 'Pleae enter date';
+                }
+              // patient_limit
+              if(empty($data['patient_limit'])){
+              $data['patient_limit_err'] = 'Pleae enter limit';
               }
               // Validate time
               if(empty($data['time'])){
@@ -471,7 +476,8 @@ class Admin extends Controller{
                 }
            
               // Make sure errors are empty
-              if(empty($data['date_err']) && empty($data['time_err']) && empty($data['reminders_err']) ){
+              if(empty($data['date_err']) && empty($data['time_err']) && empty($data['reminders_err'])
+              && empty($data['patient_limit_err']) ){
               // Validated
 
              
@@ -497,6 +503,7 @@ class Admin extends Controller{
                   'date'=> '',
                   'time'=> '08:00',
                   'reminders'=>'',
+                  'patient_limit'=> '',
                   'doctor'=>$doctor->doctor_name,
         
                   'sched'=> $sched,

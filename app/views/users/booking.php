@@ -48,6 +48,8 @@ require APPROOT . '/views/inc/navbar.php';
         </div>
 
         </div> 
+        <input type="text" hidden  name='count' id="count">
+
           <div class="form-group mt-3">
             <label for="date">date: <sup>*</sup></label>
             <input  id="date" name="date" class="form-control form-control-lg <?php echo (!empty($data['date_err'])) ? 'is-invalid' : '';   ?>" value=<?php echo $data['date']; ?>  >
@@ -85,6 +87,8 @@ require APPROOT . '/views/inc/navbar.php';
   <div hidden class="sched_dates">
   <?php foreach($data['array_sched'] as $date): ?>
   <span> <?php echo $date->date; ?></span>
+ 
+
   <?php endforeach; ?>
   </div>
 
@@ -95,6 +99,8 @@ require APPROOT . '/views/inc/navbar.php';
     <span class="d-date"><?php echo $date->date; ?></span>
     <span class="t-time"> <?php echo $date->time; ?></span>
     <span class="r-reminders"> <?php echo $date->reminders; ?></span>
+    <span class="c-count"> <?php echo $date->count?></span>
+
     </div>
 
   <?php endforeach; ?>
@@ -131,7 +137,7 @@ enable:[ function(date) {
             const rdatedData = `${dates_enable}`; 
             return rdatedData.includes(date.toISOString().substring(0, 10));
         }],
-
+       
 dateFormat: 'Y-m-d',
 minDate: "today",
 onChange: function(){
@@ -144,11 +150,15 @@ date.forEach((e)=>{
   if(e.innerText == selected){
    let time =  e.parentElement.querySelector('.t-time').innerText 
    let reminders =  e.parentElement.querySelector('.r-reminders').innerText 
+   let count =  e.parentElement.querySelector('.c-count').innerText 
+
 
       document.querySelector('#time').value = time 
 
       document.querySelector('.reminders-container').style.display = 'block'
       document.querySelector('.reminders').value = reminders
+      document.querySelector('#count').value = count
+
 
     }
 })

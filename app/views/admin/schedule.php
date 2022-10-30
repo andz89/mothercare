@@ -43,7 +43,11 @@ text-decoration: underline;
                 <span class="invalid-feedback"><?php echo $data['time_err']; ?></span>
                 </div>
 
-            
+                <div>
+                <label for=""><small>Number of Patient</small> </label>
+                    <input type="number" name="patient_limit" value="<?php echo $data['patient_limit']; ?>"   class="form-control <?php echo (!empty($data['patient_limit_err'])) ? 'is-invalid' : ''; ?>">
+                    <span class="invalid-feedback"><?php echo $data['patient_limit_err']; ?></span>
+                </div>
 
                 <div class="">
                     <label for=""><small> Reminders to patient</small> </label>
@@ -91,8 +95,12 @@ text-decoration: underline;
                     <div>
                     <!-- <span ><?php echo $data_sched->id ?></span> -->
                     <span> Date: </span><b><span class="date"><?php echo $data_sched->date ?></span></b>  
-                    <span> Time: </span> <b> <?php echo $data_sched->time ?></b>  
-                    <span class=" p-1 rounded-1 text-info" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#d<?php echo $data_sched->id ?>">Edit</span>
+                    
+                    <span class=" p-1 rounded-1 text-info" style="cursor:pointer" data-bs-toggle="modal" data-bs-target="#d<?php echo $data_sched->id ?>">Edit</span> <br>
+                    <span> Time: </span> <b> <?php echo $data_sched->time ?></b>  <br>
+                    <span> Number of Patients: </span> <b> <?php echo $data_sched->patient_limit ?></b>  
+
+                   
 
                     </div>
                     <div class="option-btn">

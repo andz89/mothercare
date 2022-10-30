@@ -12,7 +12,7 @@
         <li><a href="<?php echo URLROOT;?>/pages/contact" class="nav-link px-2 link-dark">Contact</a></li>
         <li><a href="<?php echo URLROOT;?>/pages/about" class="nav-link px-2 link-dark">About</a></li>
         <?php if(isset($_SESSION['user_id'] )&& $_SESSION['user_role'] == 'user') : ?>
-        <li><a  href="<?php echo URLROOT; ?>/users/myBookings" class="nav-link px-2 link-dark">Booking</a></li>
+        <li><a  href="<?php echo URLROOT; ?>/users/myBooking" class="nav-link px-2 link-dark">Booking</a></li>
         <li><a href="<?php echo URLROOT; ?>/users/account" class="nav-link px-2 link-dark">My Account</a></li>
         <li><a href="<?php echo URLROOT; ?>/users/logout" class="nav-link px-2 link-dark">Logout</a></li>
           

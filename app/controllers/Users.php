@@ -121,12 +121,22 @@ class Users extends Controller{
 
           $doctor_profile = $this->doctorModel->getDoctor($_GET['id']);
           $sched_dates = $this->userModel->getSched($_GET['id']);
+     
+
+   
+
+          $array_sched =[];
+          foreach($sched_dates as $date){
+     
+          array_push($array_sched, $date);
+          
+          }
+       
          
         // Check for POST
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
         
-          // Process form
-          // sanitize post data
+  
           $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
           // init data
           
@@ -141,20 +151,15 @@ class Users extends Controller{
             'date' => trim($_POST['date']),
             'time' => trim($_POST['time']),
             'note' => trim($_POST['note']),
+            'count' => trim($_POST['count']),
+
             'booking_id'=>  uniqid(),
             'date_err' => '',
             'time_err' => '',
             'note_err' => '',
           ];  
         
-          // $sched = $this->userModel->getSched($doctor_profile->id);
-          // foreach($sched as $value){
-          //   if($value->date == trim($_POST['date'])){
-          //     print_r($value->date);
-          //   }
-            
-
-          // }
+    
 
 
 
@@ -177,9 +182,9 @@ class Users extends Controller{
           // Validated
       
              if($this->userModel->add_booking($data)){
-         
+                  $this->userModel->count($data['doctor_id'],$data['date'], $data['count'] + 1);
             
-              redirect('pages/myBooking');
+              redirect('users/myBooking');
             } else {
               die('Something went wrong');
             }
@@ -192,14 +197,11 @@ class Users extends Controller{
 
 
         } else {
-        
-          $array_sched =[];
-          foreach($sched_dates as $date){
-     
-          array_push($array_sched, $date);
-          
-          }
 
+       
+      
+      
+      
           // Init data
           $data =[
 
@@ -323,7 +325,7 @@ class Users extends Controller{
        
        
       }
-      public function myBookings(){
+      public function myBooking(){
        
          if(!$_SESSION['user_id']){
           redirect('index');

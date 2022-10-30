@@ -201,7 +201,7 @@ public function updateAccount($data, $id){
 }
 
 public function delete_doctor($id){
-print_r($id);
+
   $this->db->query('DELETE FROM doctors WHERE id = :id');
   // Bind values
   $this->db->bind(':id', $id);
@@ -216,10 +216,12 @@ print_r($id);
 }
  // add schedule
  public function schedule($data){
-  $this->db->query('INSERT INTO schedule (date, time,doctor_id,reminders) VALUES(:date, :time, :doctor_id, :reminders)');
+  $this->db->query('INSERT INTO schedule (date, time,doctor_id,patient_limit, reminders) VALUES(:date, :time, :doctor_id, :patient_limit, :reminders)');
   // Bind values
   $this->db->bind(':date', $data['date']);
   $this->db->bind(':time', $data['time']);
+  $this->db->bind(':patient_limit', $data['patient_limit']);
+
   $this->db->bind(':doctor_id', $data['doctor_id']);
   $this->db->bind(':reminders', $data['reminders']);
 
@@ -233,16 +235,17 @@ print_r($id);
   }
 }
 //get Sched
-public function getSched($id){
+public function getSched(){
     
-  $this->db->query('SELECT * FROM schedule WHERE doctor_id = :doctor_id');
-  $this->db->bind(':doctor_id', $id);
- 
+  $this->db->query('SELECT * FROM schedule WHERE patient_limit > count');
+  // $this->db->bind(':doctor_id', $id);
+
   $results = $this->db->resultSet();
- 
+
   return $results;
  
 }
+
 public function getAllSched(){
     
   $this->db->query('SELECT * FROM schedule');
@@ -336,4 +339,23 @@ public function getProfile($id){
  
   return $result;
 }
+
+
+public function count($id, $date,$count){
+    
+  $this->db->query('UPDATE schedule  SET count = :count WHERE doctor_id = :doctor_id AND date= :date');
+  $this->db->bind(':doctor_id', $id);
+  $this->db->bind(':date', $date);
+  $this->db->bind(':count', $count);
+
+
+ 
+  $results = $this->db->resultSet();
+ 
+  return $results;
+ 
 }
+
+
+}
+
