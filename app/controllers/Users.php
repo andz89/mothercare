@@ -152,15 +152,19 @@ class Users extends Controller{
             'time' => trim($_POST['time']),
             'note' => trim($_POST['note']),
             'count' => trim($_POST['count']),
-
             'booking_id'=>  uniqid(),
+            'array_sched'=>$array_sched,
             'date_err' => '',
             'time_err' => '',
             'note_err' => '',
           ];  
         
-    
-
+          //filter for double booking
+          if($this->userModel->checkDoubleBooking($data['user_id'], $data['date'])){
+       
+            $data['date_err'] = 'You already booked this date';
+      
+          }
 
 
           // validate date
@@ -178,7 +182,7 @@ class Users extends Controller{
         }
 
         // Make sure errors are empty
-        if(empty($data['name_err']) && empty($data['note_err']) &&  empty($data['time_err'])){
+        if(empty($data['name_err']) && empty($data['note_err']) &&  empty($data['time_err'])   && empty($data['date_err'])){
           // Validated
       
              if($this->userModel->add_booking($data)){

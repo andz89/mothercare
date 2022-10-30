@@ -357,5 +357,20 @@ public function count($id, $date,$count){
 }
 
 
+ 
+     public function checkDoubleBooking($id,$date){
+      $this->db->query('SELECT * FROM booking WHERE user_id= :user_id AND date = :date');
+      $this->db->bind(':user_id', $id);
+      $this->db->bind(':date', $date);
+
+      $row = $this->db->single();
+  
+      // Check row
+      if($this->db->rowCount() > 0){
+        return true;
+      } else {
+        return false;
+      }
+    }
 }
 
