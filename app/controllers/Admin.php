@@ -563,25 +563,7 @@ class Admin extends Controller
     };
 
     $patients  = $this->userModel->patients($_GET['id'], $_GET['date']); //booking table //doctor id
-    // $paidPaymentDetails  = $this->userModel->getPaidPaymentDetails($_GET['booking_id']);
 
-    // print_r($paidPaymentDetails);
-
-    // if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    //   $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    //   $data = [
-    //     'announcement' => $_POST['announcement'],
-    //     'doctor_id' => $_POST['doctor_id'],
-    //     'sched-id' =>  $_GET['id'],
-
-
-    //   ];
-    //   if ($this->userModel->announcement($data)) {
-    //     // flash('edit_sched', 'update shedule  successfuly');
-    //     redirect('admin/schedule?id=' . $data['doctor_id']);
-    //   }
-    // } else {
-    // }
     $arr = [];
     foreach ($patients as $i) {
       array_push($arr, $i->payment);
@@ -625,7 +607,7 @@ class Admin extends Controller
       // Make sure errors are empty
       if (empty($data['payment_err'])) {
         if ($this->userModel->savePayment($data)) {
-          // flash('edit_sched', 'payment  successfuly');
+          flash('payment', 'payment received  successfuly');
           redirect('admin/list_patients?id=' . $_GET['id']  . '&date=' . $_GET['date']);
         } else {
           die('Something went wrong');

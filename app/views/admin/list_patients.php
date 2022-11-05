@@ -10,7 +10,9 @@
   }
 </style>
 <div class="col-md-8 mx-auto" style="min-height: 800px;">
-
+  <div style="height: 30px;">
+    <div class="alert-flash text-center"> <?php flash('payment'); ?></div>
+  </div>
   <div class="bg-light px-1 pt-3 rounded ">
     <a href="<?php echo URLROOT; ?>/admin/schedule?id=<?php echo $_GET['id'] ?>" class="btn btn-md btn-dark mb-3">Back </a>
     <h1><?php echo $data['doctor_name'] ?></h1>
@@ -127,5 +129,7 @@
   </div>
 </div>
 </div>
-
+<script>
+  <?php echo alert_flash(); ?>
+</script>
 <?php require APPROOT . '/views/inc/footer.php'; ?>
