@@ -648,9 +648,4 @@ class Admin extends Controller
       $this->view('admin/payment', $data);
     }
   }
-
-  public function payment_successful()
-  {
-    $this->view('admin/payment_successful');
-  }
 }

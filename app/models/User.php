@@ -392,11 +392,12 @@ class User
     $this->db->bind(':booking_id', $booking_id);
 
     $results = $this->db->single();
-
+    // print_r($results);
     return $results;
   }
   public function savePayment($data)
   {
+
 
 
     $this->db->query('UPDATE booking SET payment = :payment, payment_date = :payment_date WHERE booking_id = :booking_id');
