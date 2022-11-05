@@ -3,7 +3,7 @@
 <div class="container-sm my-3" style="min-height:700px;">
   <a href="<?php echo URLROOT; ?>/admin/list_patients?patient_id=<?php echo $data['patient_id'] ?>&id=<?php echo $_GET['id'] ?>&date=<?php echo $data['booking_date'] ?>" class="btn btn-md btn-dark mb-3">Back </a>
 
-  <form class="row g-3" action="<?php echo URLROOT; ?>/admin/payment?booking_id=<?php echo $_GET['booking_id'] ?>" method="POST">
+  <form class="row g-3" action="<?php echo URLROOT; ?>/admin/payment?booking_id=<?php echo $_GET['booking_id'] ?>&id=<?php echo $_GET['id'] ?>&date=<?php echo $_GET['date'] ?>" method="POST">
     <h3>Payment</h3>
     <div class="col-md-4">
       <label for="validationDefault02" class="form-label">Patient ID no.</label>

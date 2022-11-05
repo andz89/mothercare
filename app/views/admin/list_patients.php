@@ -18,7 +18,7 @@
 
     <p class="lead "><b>List of Patients </b> <a class="lead fs-12" href="/docs/5.2/components/navbar/" role="button">Download as docs »</a> </p>
     <span>Total no. of Patients: <b> <?php echo $data['patient_count'] ?></b> </span>
-    <span> Total Payment recieved:<b> <?php echo $data['total_payment']  ?> </b></span>
+    <span> Total Payment recieved:<b>Php <?php echo $data['total_payment']  ?> </b></span>
   </div>
 
   <div class="list-group w-auto">

@@ -243,11 +243,11 @@ class User
     }
   }
   //get Sched
-  public function getSched()
+  public function getSched($doctor_id)
   {
 
-    $this->db->query('SELECT * FROM schedule WHERE patient_limit > count');
-    // $this->db->bind(':doctor_id', $id);
+    $this->db->query('SELECT * FROM schedule WHERE patient_limit > count AND doctor_id = :doctor_id');
+    $this->db->bind(':doctor_id', $doctor_id);
 
     $results = $this->db->resultSet();
 
@@ -362,9 +362,12 @@ class User
 
 
 
-    $results = $this->db->resultSet();
-
-    return $results;
+    // Execute
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 

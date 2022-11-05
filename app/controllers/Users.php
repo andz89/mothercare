@@ -122,7 +122,7 @@ class Users extends Controller
     $sched_dates = $this->userModel->getSched($_GET['id']);
 
 
-
+    // print_r($doctor_profile->date);
 
     $array_sched = [];
     foreach ($sched_dates as $date) {
@@ -157,6 +157,11 @@ class Users extends Controller
         'note_err' => '',
       ];
 
+
+      // print_r($data['date']);
+
+      // return false;
+
       //filter for double booking
       if ($this->userModel->checkDoubleBooking($data['user_id'], $data['date'])) {
 
@@ -178,12 +183,20 @@ class Users extends Controller
         $data['note_err'] = 'Pleae enter note';
       }
 
+
       // Make sure errors are empty
       if (empty($data['name_err']) && empty($data['note_err']) &&  empty($data['time_err'])   && empty($data['date_err'])) {
         // Validated
 
+        if ($this->userModel->count($data['doctor_id'], $data['date'], $data['count'] + 1)) {
+        } else {
+          die('Something went wrong');
+
+          return false;
+        }
+
+
         if ($this->userModel->add_booking($data)) {
-          $this->userModel->count($data['doctor_id'], $data['date'], $data['count'] + 1);
 
           redirect('users/myBooking');
         } else {

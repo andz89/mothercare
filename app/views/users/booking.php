@@ -49,7 +49,7 @@ require APPROOT . '/views/inc/navbar.php';
         </div>
 
       </div>
-      <input type="text" hidden name='count' id="count">
+      <input type="number" hidden name='count' id="count">
 
       <div class="form-group mt-3">
         <label for="date">date: <sup>*</sup></label>
@@ -154,7 +154,7 @@ require APPROOT . '/views/inc/navbar.php';
 
           document.querySelector('.reminders-container').style.display = 'block'
           document.querySelector('.reminders').value = reminders
-          document.querySelector('#count').value = count
+          document.querySelector('#count').value = parseInt(count);
 
 
         }

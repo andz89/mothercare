@@ -551,7 +551,7 @@ class Admin extends Controller
   public function list_patients()
   {
     $count_patients =  $this->userModel->getCountPatients($_GET['id'], $_GET['date']);
-    $doctor =  $this->doctorModel->getDoctor($_GET['id']);
+    $doctor =  $this->doctorModel->getDoctor($_GET['id']); //doctor id
 
 
 
@@ -562,7 +562,7 @@ class Admin extends Controller
       }
     };
 
-    $patients  = $this->userModel->patients($_GET['id'], $_GET['date']);
+    $patients  = $this->userModel->patients($_GET['id'], $_GET['date']); //booking table //doctor id
     // $paidPaymentDetails  = $this->userModel->getPaidPaymentDetails($_GET['booking_id']);
 
     // print_r($paidPaymentDetails);
