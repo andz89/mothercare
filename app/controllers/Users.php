@@ -18,7 +18,7 @@ class Users extends Controller
 
     // Check for POST
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      ('users/register');
+
       // Process form
       // sanitize post data
       $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -30,12 +30,18 @@ class Users extends Controller
         'confirm_password' => trim($_POST['confirm_password']),
         'role' => 'user',
         'contact_number' => trim($_POST['contact_number']),
-
         'name_err' => '',
         'email_err' => '',
         'password_err' => '',
         'confirm_password_err' => ''
       ];
+      if (isset($_SESSION['user_role'])) {
+        if ($_SESSION['user_role'] == 'admin') {
+          $data['name_err'] = 'You login as admin';
+          $this->view('users/register', $data);
+          return false;
+        }
+      }
 
       // validate email
       if (empty($data['email'])) {
@@ -236,8 +242,7 @@ class Users extends Controller
 
     // Check for POST
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      ('users/login');
-      // user_role('users/login');
+
 
       // Process form
       // Sanitize POST data
@@ -250,6 +255,14 @@ class Users extends Controller
         'email_err' => '',
         'password_err' => '',
       ];
+      if (isset($_SESSION['user_role'])) {
+        if ($_SESSION['user_role'] == 'admin') {
+          $data['email_err'] = 'You login as admin';
+          $this->view('users/login', $data);
+          return false;
+        }
+      }
+
       // Validate Email
       if (empty($data['email'])) {
         $data['email_err'] = 'Pleae enter email';

@@ -1,13 +1,14 @@
-<?php 
+<?php
 require APPROOT . '/views/inc/header.php';
 
 userRoleEqualtoAdmin_display_navbar();
 //navbar as user
-require APPROOT . '/views/inc/navbar.php'; 
+require APPROOT . '/views/inc/navbar.php';
 ?>
 
 <div class="jumbutron my-4 py-0">
-    <section class="text-center container my-0 py-0">
+
+  <section class="text-center container my-0 py-0">
     <div class="row py-lg-2 my-0 py-0">
       <div class="col-md-12 mx-auto my-0 py-0">
         <h1 class="fw-light">MotherCare</h1>
@@ -19,7 +20,7 @@ require APPROOT . '/views/inc/navbar.php';
     </div>
   </section>
   <section class="text-center container my-0 py-0">
-  <img class="mx-auto mb-3" src="<?php echo URLROOT;?>/images/pregnant.jpg" width="50%"  alt="" >
+    <img class="mx-auto mb-3" src="<?php echo URLROOT; ?>/images/pregnant.jpg" width="50%" alt="">
 
     <div class="row py-lg-2 my-0 py-0">
       <div class="col-md-12 mx-auto my-0 py-0">
@@ -42,5 +43,5 @@ require APPROOT . '/views/inc/navbar.php';
       </div>
     </div>
   </section>
-    </div>
-<?php require APPROOT . '/views/inc/footer.php';?>
+</div>
+<?php require APPROOT . '/views/inc/footer.php'; ?>

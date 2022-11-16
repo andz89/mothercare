@@ -148,6 +148,25 @@ class User
 
     return $results;
   }
+
+
+  //count bookings
+  public function getAllBookings_count()
+  {
+    $this->db->query('SELECT * FROM booking');
+    $this->db->resultSet();
+    return $this->db->rowCount();
+  }
+
+  //count bookings
+  public function getAllUsers_count()
+  {
+    $this->db->query('SELECT * FROM users');
+    $this->db->resultSet();
+    return $this->db->rowCount();
+  }
+
+
   public function getAllBookings_as_admin()
   {
     $this->db->query('SELECT * FROM booking');

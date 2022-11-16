@@ -278,14 +278,14 @@
 
     );
 
-    var date_filter = new Date();
+    // var date_filter = new Date();
 
 
-    const result = date_filter.toLocaleDateString("en-GB", { // you can use undefined as first argument
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-    })
+    // const result = date_filter.toLocaleDateString("en-GB", { // you can use undefined as first argument
+    //     day: "2-digit",
+    //     month: "2-digit",
+    //     year: "numeric",
+    // })
     // function reverseString(str) {
     //     return str.split("/").reverse().join("-");
     // }

@@ -1,47 +1,63 @@
 
 <?php
-  class Doctor {
-    private $db;
+class Doctor
+{
+  private $db;
 
-    public function __construct(){
-      $this->db = new Database;
-    }
-
- public function getAllDoctors(){
-    
-    $this->db->query('SELECT * FROM doctors');
-   
-    $results = $this->db->resultSet();
-   
-    return $results;
-   
+  public function __construct()
+  {
+    $this->db = new Database;
   }
-          // Find doctor by  id
- public function getDoctor($id){
-  $this->db->query('SELECT * FROM doctors WHERE id = :id');
-  $this->db->bind(':id', $id);
+  //get doctors count
 
 
-  // // Check row
-  // if($this->db->rowCount() > 0){
-  //   return true;
-  // } else {
-  //   return false;
-  // }
-  $row = $this->db->single();
-  return $row;
-} 
-  public function getCountDoctors(){
-    
+  public function getDoctorsCount()
+  {
+
     $this->db->query('SELECT * FROM doctors');
-   
-    $results = $this->db->resultSet();
-   
+
+    $this->db->resultSet();
+
     return $this->db->rowCount();
-   
-
   }
-  public function add_doctor($data){
+
+
+  public function getAllDoctors()
+  {
+
+    $this->db->query('SELECT * FROM doctors');
+
+    $results = $this->db->resultSet();
+
+    return $results;
+  }
+  // Find doctor by  id
+  public function getDoctor($id)
+  {
+    $this->db->query('SELECT * FROM doctors WHERE id = :id');
+    $this->db->bind(':id', $id);
+
+
+    // // Check row
+    // if($this->db->rowCount() > 0){
+    //   return true;
+    // } else {
+    //   return false;
+    // }
+    $row = $this->db->single();
+    return $row;
+  }
+  public function getCountDoctors()
+  {
+
+    $this->db->query('SELECT * FROM doctors');
+
+    $results = $this->db->resultSet();
+
+    return $this->db->rowCount();
+  }
+  public function add_doctor($data)
+  {
 
     $this->db->query('INSERT INTO doctors (doctor_name, description_1, description_2, image_path, contact_number, email) VALUES(:doctor_name, :description_1, :description_2,:image_path, :contact_number, :email)');
     // Bind values
@@ -51,21 +67,21 @@
     $this->db->bind(':image_path', $data['image_path']);
     $this->db->bind(':contact_number', $data['contact_number']);
     $this->db->bind(':email', $data['email']);
-   
+
 
 
 
     // Execute
-    if($this->db->execute()){
+    if ($this->db->execute()) {
       return true;
     } else {
       return false;
     }
-   
   }
 
-  public function update_doctor($data){
-    
+  public function update_doctor($data)
+  {
+
     $this->db->query('UPDATE doctors SET contact_number=:contact_number, doctor_name = :doctor_name, description_1 = :description_1,description_2 = :description_2,image_path = :image_path, email = :email WHERE id = :id');
     // Bind values
     $this->db->bind(':id', $data['id']);
@@ -81,11 +97,10 @@
 
 
     // Execute
-    if($this->db->execute()){
+    if ($this->db->execute()) {
       return true;
     } else {
       return false;
     }
-   
   }
 }

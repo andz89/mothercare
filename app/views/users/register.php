@@ -9,6 +9,7 @@ require APPROOT . '/views/inc/navbar.php';
   <div class="card card-body bg-light ">
     <h2>Create An Account</h2>
     <p>Please fill out this form to register with us</p>
+    <!-- echo $_SESSION['user_role'] == 'admin' -->
     <form action="<?php echo URLROOT; ?>/users/register" method="post">
       <div class="form-group">
         <label for="name">Name: <sup>*</sup></label>

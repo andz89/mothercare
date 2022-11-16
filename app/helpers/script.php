@@ -1,11 +1,12 @@
 <?php
 
 
-function script_edit_rooms_admin(){
-    return 
-    
-  "
-  console.log('ssss')
+function script_edit_rooms_admin()
+{
+  return
+
+    "
+
   let imgInp = document.querySelector('#imgInput')
   if(imgInp == false){
   
@@ -22,10 +23,11 @@ function script_edit_rooms_admin(){
       
     }
   }";
-  }
+}
 
-function alert_flash(){
-    return "
+function alert_flash()
+{
+  return "
   
 
     let alert_flash = document.querySelector('.alert-flash')
@@ -41,5 +43,4 @@ function alert_flash(){
     }
     
     ";
-  }
-
+}

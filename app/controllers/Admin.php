@@ -14,7 +14,19 @@ class Admin extends Controller
 
   public function index()
   {
-    $data =  ['title' => 'PHP MVC',];
+
+    $doctors_count = $this->doctorModel->getDoctorsCount();
+    $bookings_count = $this->userModel->getAllBookings_count();
+    $users_count = $this->userModel->getAllUsers_count();
+
+
+
+    $data =  [
+      'doctors_count' => $doctors_count,
+      'bookings_count' => $bookings_count,
+      'users_count' => $users_count
+
+    ];
 
     if (isset($_SESSION['user_role'])) {
 
@@ -186,10 +198,10 @@ class Admin extends Controller
         $fileNewName = uniqid('', true) . "." . $fileActualExt;
         $fileDestination =   'images/' . $fileNewName;
         move_uploaded_file($fileTempName, $fileDestination);
-        $data['image_path'] = URLROOT . '/' . 'images/' . $fileNewName;
+        $data['image_path'] = $fileNewName;
 
         if ($this->doctorModel->add_doctor($data)) {
-          flash('register_success', 'You are registered and can log in');
+          flash('add_doctor', 'Added successfully');
 
           redirect('admin/doctors');
         } else {
@@ -412,6 +424,21 @@ class Admin extends Controller
   {
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+      $image_path =  $this->doctorModel->getDoctor($_GET['id']);
+      $filename = 'images/' .  $image_path->image_path;
+      // print_r($filename);
+      // URLROOT . '/'. 'images/'.$fileNewName
+      // return false;
+      if (file_exists($filename)) {
+        unlink($filename);
+      } else {
+        print_r($filename);
+        return false;
+      }
+
+
+
 
       if ($this->userModel->delete_doctor($_GET['id'])) {
         redirect('admin/doctors');

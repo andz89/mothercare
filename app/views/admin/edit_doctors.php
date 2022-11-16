@@ -8,7 +8,7 @@
   <form action="<?php echo URLROOT; ?>/admin/edit_doctor?id=<?php echo $data['id'] ?> " method="post" enctype="multipart/form-data">
     <div class="d-flex justify-content-start gap-5 align-center" style="width: 100%;">
       <div class="mt-4 d-flex flex-column">
-        <img id=" blah" src="<?php echo $data['image_path'] ?>" width="100%" alt="">
+        <img id="blah" src="<?php echo $data['image_path'] ?>" width="100%" alt="">
 
         <div class="form-group mt-3">
           <label for="imgInput" class="btn btn-secondary">Change Image</label> <span id="file-name" style="font-size:20px;"></span>

@@ -29,7 +29,7 @@
       <div class="list-group-item mt-4 py-3">
         <div class=" d-flex justify-content-start gap-3">
           <div class="" style="width:20%">
-            <img class="" src="<?php echo $doctors->image_path ?>" width="100%" alt="">
+            <img class="" src="<?php echo  URLROOT . '/' . 'images/' . $doctors->image_path ?>" width="100%" alt="">
           </div>
 
           <div class="" style="width:100%">
