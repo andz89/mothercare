@@ -1,14 +1,44 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <?php require APPROOT . '/views/inc/navbar_admin.php'; ?>
+<style>
+  @media only screen and (max-width: 1100px) {
+    .content-image-info {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      ;
+
+    }
+
+    .content-img {
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+    .img {
+      width: 200px;
+    }
+
+    .info-button {
+
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+</style>
 <div class="container my-5">
 
   <a href="<?php echo URLROOT; ?>/admin/doctors" class="btn btn-md btn-primary mb-3">Back </a>
   <h3>Edit Doctor Profile</h3>
 
   <form action="<?php echo URLROOT; ?>/admin/edit_doctor?id=<?php echo $data['id'] ?> " method="post" enctype="multipart/form-data">
-    <div class="d-flex justify-content-start gap-5 align-center" style="width: 100%;">
+    <div class="d-flex justify-content-start gap-5 align-center content-image-info" style="width: 100%;">
       <div class="mt-4 d-flex flex-column">
-        <img id="blah" src="<?php echo $data['image_path'] ?>" width="100%" alt="">
+        <img id="blah" src="<?php echo URLROOT . '/' . 'images/' . $data['image_path'] ?>" width="100%" alt="">
 
         <div class="form-group mt-3">
           <label for="imgInput" class="btn btn-secondary">Change Image</label> <span id="file-name" style="font-size:20px;"></span>

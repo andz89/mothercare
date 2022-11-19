@@ -1,5 +1,6 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 <?php require APPROOT . '/views/inc/navbar_admin.php'; ?>
+
 <style>
     .option-btn span:hover {
         text-decoration: underline;
@@ -17,10 +18,28 @@
     .hide {
         display: none;
     }
+
+    @media only screen and (max-width: 900px) {
+        .content-image-info {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            ;
+
+        }
+
+
+
+        .info-button {
+
+            flex-direction: column;
+            gap: 10px;
+        }
+    }
 </style>
 <div class="container-xxl  col-md-11 mx-auto mb-4">
     <a href="<?php echo URLROOT; ?>/admin/doctors" class="btn btn-md btn-dark m-1">Back </a>
-    <div class="d-flex justify-content-start  gap-3 " style="width:100%">
+    <div class="d-flex justify-content-start  gap-3 content-image-info" style="width:100%">
 
 
 
@@ -93,7 +112,9 @@
 
                         <div class="list-group mt-1 mb-0">
                             <div class="list-group-item  mb-0 pb-0" aria-current="true">
-                                <div class="w-100 justify-content-between" style="display: flex;">
+
+                                <!-- here -->
+                                <div class="w-100 justify-content-between info-button " style="display: flex;">
                                     <div>
                                         <!-- <span ><?php echo $data_sched->id ?></span> -->
                                         <span> Date: </span><b><span class="date"><?php echo $data_sched->date ?></span></b>

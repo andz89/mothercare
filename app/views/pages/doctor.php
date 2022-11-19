@@ -3,7 +3,36 @@ require APPROOT . '/views/inc/header.php';
 userRoleEqualtoAdmin_display_navbar();
 require APPROOT . '/views/inc/navbar.php';
 ?>
+<style>
+  @media only screen and (max-width: 1100px) {
+    .content-image-info {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      ;
 
+    }
+
+    .content-img {
+      width: 100%;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+    .img {
+      width: 200px;
+    }
+
+    .info-button {
+
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+</style>
 
 <div class="container col-md-10 mx-auto my-0 py-0">
 
@@ -25,14 +54,14 @@ require APPROOT . '/views/inc/navbar.php';
 
       <div class="  align-items-start  ">
         <div class="list-group-item py-3 mt-3 ">
-          <div class="d-flex justify-content-start gap-3">
-            <div class="" style="width:30%">
-              <img class="" src="<?php echo $doctors->image_path ?>" width="100%" alt="">
+          <div class="d-flex justify-content-start gap-3 content-image-info">
+            <div class="content-img" style="width:30%">
+              <img class="img" src="<?php echo URLROOT . '/' . 'images/' . $doctors->image_path ?>" width="100%" alt="">
             </div>
 
             <div class="" style="width:100%">
               <div class="">
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between info-button">
                   <div>
                     <h6 class="text-body fs-4"><?php echo $doctors->doctor_name ?></h6>
                   </div>
